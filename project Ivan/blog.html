@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phineas solution</title>
+    <!--Bootstrap 5.2-->
+    <link rel="stylesheet" href="style.css">
+    <!--FontAwesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Animation css-->
+    
+</head>
+<body style="background-color: #f5f5f5;">
+  
+<!--Menu vista web-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top px-3 px-md-5">
+  <div class="container-fluid">
+    <!--Logo-->
+    <a class="navbar-brand" href="https://www.phineas-soluciones.com/">
+      <img src="features/img/logo-original.svg" alt="" width="120px;">
+    </a>
+    <!--boton md navbar-->
+    <button class="navbar-toggler border border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menubar"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars text-black"></i>
+    </button>
+    <!--Inicio - Menu responsive-->
+    <div class="collapse navbar-collapse" id="menubar">
+      <ul class="navbar-nav me-auto text-start text-lg-center pt-3 pb-5 pt-lg-0 pb-lg-0">
+        <!--Lista de navegación-->
+        <li class="d-block d-lg-none pt-5">
+          <h5 class="">Mapa de navegación</h5>
+          <hr>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link navh text-decoration-none" href="acerca-de.html"> Acerca de</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link navh text-decoration-none" href="servicios.html">Productos y servicios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link navh text-decoration-none" href="casos.html">Casos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link navh text-decoration-none active active-nav fw-semibold" href="blog.html">Blog</a>
+        </li>
+        <!--Fin - Lista de navegación-->
+
+        <!--Inicio - Seleccionar idioma - show md -->
+        <li class="d-block d-lg-none pt-5">
+          <h5 class="">Seleccionar idioma</h5>
+          <hr>
+        </li>
+        <li>
+          <div class="d-block d-lg-none">
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item" role="button">Spanish</li>
+              <li class="list-group-item" role="button">US & EU</li>
+            </ul>
+          </div>
+        </li>
+        <!--Fin - Seleccionar idioma - show md -->
+
+        <!--Inicio -  Botón contactanos - show md-->
+        <li class="d-block d-lg-none pt-5">
+          <button class="btn btn-secondary rounded-0 me-2 "
+            onclick="location.href='contactanos.html';">Contáctanos</button>
+        </li>
+        <!--fin -  Botón contactanos - show md-->
+      </ul>
+
+      <!-- Inicio - Contactanos y selección de idioma vista web-->
+      <ul class="navbar-nav flex-row flex-wrap px-0 px-lg-3 pc-center d-none d-lg-flex">
+        <li class="nav-item p-0">
+          <button class="btn btn-secondary rounded-0 me-2"
+            onclick="location.href='contactanos.html';">Contáctanos</button>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false">
+            Spanish
+          </a>
+          <ul class="dropdown-menu  border-0">
+            <li><a class="dropdown-item" href="#">Spanish</a></li>
+            <li><a class="dropdown-item" href="#">US &amp; EU</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!-- fin - Contactanos y selección de idioma vista web-->
+
+      <!--Buscar-->
+      <form class="d-none d-lg-flex bd-search pt-5 pb-5 pt-lg-0 pb-lg-0" role="search">
+        <input class="form-control" type="Buscar" placeholder="Buscar..." aria-label="Search">
+      </form>
+    </div>
+  </div>
+</nav>
+  
+<main>   
+  <!-- Casos de exitos -->
+  <section class="pt-5 pb-5 pe-3 ps-3 pe-md-0 ps-md-0">
+    <div class="container">
+      <div class="row">
+     <!-- Titulo -->
+     <div class="col-12">
+      <h2 class="pb-5 text-center fw-light">Más blogs</h2>
+     </div> 
+      </div>
+
+      <!--Fila 1-->
+      <div class="row"> 
+        <!--Caso 1 -->       
+        <div class="col-12 col-md-6 col-lg-3">
+          <article class="pb-3">
+            <div class="card border-0 rounded-0" style="width: 100%;">
+              <!--Portadas-->
+              <a href="post/casos/workflow-mantenimiento-de-ordenes-de-trabajo.html">
+                <img src="features/img/1_Re-Hero-image-July-25-OMB-960x540.jpg" alt="" class="img-fluid">
+              </a>
+              <!--Descripciones-->
+              <div class="card-body pt-0">
+                <p class="c-meta-text">
+                  <a href="caso-blog-plantilla.html" class="nav-link">
+                    <h5 class="card-title fw-light">Workflow mantenimiento de ordenes de trabajo</h5>
+                  </a>
+                  <small>Cliente: Promigas</small><br>
+                  <p class="card-text"><small class="text-muted">Au 8 2022</small></p>
+              </div>
+            </div>
+          </article>
+        </div>
+        
+        <!--Caso 2-->
+        <div class="col-12 col-md-6 col-lg-3">          
+          <article class="pb-3">
+            <div class="card border-0 rounded-0" style="width: 100%;">
+              <!--Portadas-->
+              <a href="post/casos/workflow-de-gestion-de-viajes.html">
+                <img src="features/img/1_Re-Hero-image-July-25-OMB-960x540.jpg" alt="" class="img-fluid">
+              </a>
+              <!--Descripciones-->
+              <div class="card-body pt-0">
+                <p class="c-meta-text">
+                  <a href="post/casos/workflow-de-gestion-de-viajes.html" class="nav-link">
+                    <h5 class="card-title fw-light">Workflow de gestión de <br> viajes</h5>
+                  </a>
+                  <small>Cliente: Promigas</small><br>
+                  <p class="card-text"><small class="text-muted">Au 8 2022</small></p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!--Caso 3-->
+        <div class="col-12 col-md-6 col-lg-3">
+          <article class="pb-3">
+            <div class="card border-0 rounded-0" style="width: 100%;">
+              <!--Portadas-->
+              <a href="post/casos/control-de-cambios-en-gasoductos.html">
+                <img src="features/img/1_Re-Hero-image-July-25-OMB-960x540.jpg" alt="" class="img-fluid">
+              </a>
+              <!--Descripciones-->
+              <div class="card-body pt-0">
+                <p class="c-meta-text">
+                  <a href="post/casos/control-de-cambios-en-gasoductos.html" class="nav-link">
+                    <h5 class="card-title fw-light">Control de cambios en gasoductos</h5>
+                  </a>
+                  <small>Cliente: Promigas</small><br>
+                  <p class="card-text"><small class="text-muted">Au 8 2022</small></p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!--Caso 4-->
+        <div class="col-12 col-md-6 col-lg-3">
+          <article class="pb-3">
+            <div class="card border-0 rounded-0" style="width: 100%;">
+              <!--Portadas-->
+              <a href="post/casos/mejora-en-seleccion-de-personal.html">
+                <img src="features/img/1_Re-Hero-image-July-25-OMB-960x540.jpg" alt="" class="img-fluid">
+              </a>
+              <!--Descripciones-->
+              <div class="card-body pt-0">
+                <p class="c-meta-text">
+                  <a href="post/casos/mejora-en-seleccion-de-personal.html" class="nav-link">
+                    <h5 class="card-title fw-light">Mejora en selección de personal</h5>
+                  </a>
+                  <small>Cliente: Promigas</small><br>
+                  <p class="card-text"><small class="text-muted">Au 8 2022</small></p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!--Fila 2-->
+      <div class="row"> 
+        <!--Caso 5 -->       
+        <div class="col-12 col-md-6 col-lg-3">
+          <article class="pb-3">
+            <div class="card border-0 rounded-0" style="width: 100%;">
+              <!--Portadas-->
+              <a href="post/casos/workflow-mantenimiento-de-ordenes-de-trabajo.html">
+                <img src="features/img/1_Re-Hero-image-July-25-OMB-960x540.jpg" alt="" class="img-fluid">
+              </a>
+              <!--Descripciones-->
+              <div class="card-body pt-0">
+                <p class="c-meta-text">
+                  <a href="caso-blog-plantilla.html" class="nav-link">
+                    <h5 class="card-title fw-light">Workflow mantenimiento de ordenes de trabajo</h5>
+                  </a>
+                  <small>Cliente: Promigas</small><br>
+                  <p class="card-text"><small class="text-muted">Au 8 2022</small></p>
+              </div>
+            </div>
+          </article>
+        </div>
+        
+        <!--Caso 6-->
+        <div class="col-12 col-md-6 col-lg-3">          
+          <article class="pb-3">
+            <div class="card border-0 rounded-0" style="width: 100%;">
+              <!--Portadas-->
+              <a href="post/casos/workflow-de-gestion-de-viajes.html">
+                <img src="features/img/1_Re-Hero-image-July-25-OMB-960x540.jpg" alt="" class="img-fluid">
+              </a>
+              <!--Descripciones-->
+              <div class="card-body pt-0">
+                <p class="c-meta-text">
+                  <a href="post/casos/workflow-de-gestion-de-viajes.html" class="nav-link">
+                    <h5 class="card-title fw-light">Workflow de gestión de <br> viajes</h5>
+                  </a>
+                  <small>Cliente: Promigas</small><br>
+                  <p class="card-text"><small class="text-muted">Au 8 2022</small></p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!--Caso 7-->
+        <div class="col-12 col-md-6 col-lg-3">
+          <article class="pb-3">
+            <div class="card border-0 rounded-0" style="width: 100%;">
+              <!--Portadas-->
+              <a href="post/casos/control-de-cambios-en-gasoductos.html">
+                <img src="features/img/1_Re-Hero-image-July-25-OMB-960x540.jpg" alt="" class="img-fluid">
+              </a>
+              <!--Descripciones-->
+              <div class="card-body pt-0">
+                <p class="c-meta-text">
+                  <a href="post/casos/control-de-cambios-en-gasoductos.html" class="nav-link">
+                    <h5 class="card-title fw-light">Control de cambios en gasoductos</h5>
+                  </a>
+                  <small>Cliente: Promigas</small><br>
+                  <p class="card-text"><small class="text-muted">Au 8 2022</small></p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!--Caso 8-->
+        <div class="col-12 col-md-6 col-lg-3">
+          <article class="pb-3">
+            <div class="card border-0 rounded-0" style="width: 100%;">
+              <!--Portadas-->
+              <a href="post/casos/mejora-en-seleccion-de-personal.html">
+                <img src="features/img/1_Re-Hero-image-July-25-OMB-960x540.jpg" alt="" class="img-fluid">
+              </a>
+              <!--Descripciones-->
+              <div class="card-body pt-0">
+                <p class="c-meta-text">
+                  <a href="post/casos/mejora-en-seleccion-de-personal.html" class="nav-link">
+                    <h5 class="card-title fw-light">Mejora en selección de personal</h5>
+                  </a>
+                  <small>Cliente: Promigas</small><br>
+                  <p class="card-text"><small class="text-muted">Au 8 2022</small></p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  
+    
+</main>
+
+<!--Footer-->
+<footer>
+  <div class="container-fluid">
+    <div class="row bg-secondary text-white p-3 p-md-5 pt-5 pb-5">
+      <div class="col-12 col-lg-3 pb-4 pb-md-0">
+        <a class="navbar-brand lh-lg" href="https://www.phineas-soluciones.com/">
+          <img src="features/img/logo-negative.svg" alt="" height="35">
+        </a>
+        <p>Todos los derechos reservados 2022</p>
+      </div>
+      <div class="col-12 col-lg-4 pb-3 pb-md-0">
+        <h6 class="lh-sm">Contáctanos</h6>
+        <p class="fs-4 fw-bolder">
+          <a href="mailto:someone@example.com" class="text-white">info@phineas-soluciones.com</a>
+        </p>
+      </div>
+      <div class="col-12 col-lg-2 pb-4 pb-md-0">
+        <h6>Redes Sociales</h6>
+        <div class="row text-white fs-3">
+          <div class="container">
+            <div class="col-12">
+              <ul class="navbar-nav flex-row flex-wrap pc-center">
+                <li class="nav-item col-md-auto pe-4">
+                  <i role="button" onclick="window.open('https://twitter.com/PhineasCia', '_blank')" class="fab fa-twitter"></i> 
+                </li>
+                <li class="nav-item col-md-auto pe-4">
+                  <i class="fab fa-linkedin"></i>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-3 ">
+        <h6 class="pb-1 pb-md-0">Suscríbete para recibir nuestras noticias, perspectivas e invitaciones a eventos.
+        </h6>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Ingrese su email" aria-label="Recipient's username"
+            aria-describedby="button-addon2">
+          <button class="btn btn-primary" type="button" id="button-addon2">Enviar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row bg-primary text-white pt-4 pt-md-2 pb-4 pb-md-2 pe-4 ps-4 pe-md-5 ps-md-5">
+      <div class="col-12 col-lg-2 lh-lg">
+        <small role="button" onclick="location.href='politica-de-privacidad.html'">Políticas de privacidad</small>
+      </div>
+      <div class="col-12 col-lg-2 lh-lg">
+        <small role="button" onclick="location.href='terminos-y-condiciones.html'">Términos del servicios</small>
+      </div>
+      <div class="col-12 col-lg-2 lh-lg">
+        <small>Mapa del sitio</small>
+      </div>
+      <div class="col-12 col-lg-2 lh-lg">
+        <small role="button" onclick="location.href='politica-de-cookies.html'">Políticas de Cookies</small>
+      </div>
+      <div class="col-12 col-lg-2 lh-lg">
+        <small>Preferencias de Cookies</small>
+      </div>
+      <div class="col-12 col-lg-2 lh-lg">
+        <small>Políticas de Vulnerabilidad</small>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  
+  
+</body>
+</html>

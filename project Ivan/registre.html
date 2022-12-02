@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clientmail</title>
+  <!--Bootstrap 5.2-->
+  <link rel="stylesheet" href="style.css">
+  <!--FontAwesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!--Animation css-->
+
+</head>
+
+<body class="row bg-primary align-items-center justify-content-center vh-100" style="overflow: hidden;">
+  <main>
+    <!--Login-->
+    <section>
+      <div class="container w-content-create">
+        <div class="row">
+          <div class="col-12 pt-5 pb-4 bg-info" style="border-radius: 10px; padding-left: 35px; padding-right: 35px;">
+            <!--Cabecera login - inicio-->
+            <ul class="lh-1 p-0 text-center">
+              <li class="list-group-item lh-1">
+                <h3 class="m-0 fw-bold">Create Account!</h3></li>
+            </ul>
+            <!--Cabecera login - fin-->
+            
+            <!--Login form - Inicio-->
+            <form class="pt-3 needs-validation" novalidate>
+              <div class="container">
+                <div class="row">
+              <!--Nombre-->
+              <div class="mb-3 col-12 col-md-6">
+                <small for="nameRequest" class="form-label ps-2 fw-semibold">Name*</small>
+                <input type="text" class="form-control rounded-pill" id="nameRequest" aria-describedby="emailHelp" required>
+                <div class="invalid-feedback">
+                  Please put your name!
+                </div>
+              </div>
+              <!--Apellido-->
+              <div class="mb-3 col-12 col-md-6">
+                <small for="lastNameRequest" class="form-label ps-2 fw-semibold">Last Name*</small>
+                <input type="text" class="form-control rounded-pill" id="lastNameRequest" aria-describedby="emailHelp" required>
+                <div class="invalid-feedback">
+                  Please put your lastname!
+                </div>
+              </div>
+              <!--Mail-->
+              <div class="mb-3 col-12 col-md-6">
+                <small for="emailRequest" class="form-label ps-2 fw-semibold">Email*</small>
+                <input type="text" class="form-control rounded-pill" id="emailRequest" aria-describedby="emailHelp" required>
+                <div class="invalid-feedback">
+                  Please verified your mail!
+                </div>
+              </div>
+              <!--Password-->
+              <div class="mb-3 col-12 col-md-6">
+                <small for="passwordRequest" class="form-label ps-2 fw-semibold">Password*</small>
+                <input type="password" class="form-control rounded-pill" id="passwordRequest" required>
+                <div class="invalid-feedback">
+                  Please verified your new password!
+                </div>
+              </div>
+              <!--Confirm Password-->
+              <div class="mb-3 col-12 col-md-6">
+                <small for="verifiedPasswordRequest" class="form-label ps-2 fw-semibold">Confirm Password*</small>
+                <input type="password" class="form-control rounded-pill" id="verifiedPasswordRequest" required>
+                <div class="invalid-feedback">
+                  Please verified your new password!
+                </div>
+                <!--Check-->
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="userPremierRequest">
+                <label class="form-check-label" for="userPremierRequest">Do you want to be a <b>Premium User</b>?</label>
+              </div>
+              <!--Boton de enviar-->
+              <div class="d-grid gap-2 pt-4">
+                <button class="btn btn-secondary rounded-pill fw-semibold" type="submit">Create Account</button>
+              </div>
+
+            </div>
+            </div>
+            </form>
+            <!--Login form - fin-->
+
+            <!--Create new account - Inicio-->
+            <div class="pt-5 text-center">
+              <span>
+                Already have an account? <b role="button" onclick="location.href='index.html';">Log in</b>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section> 
+  </main>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+  </script>
+</body>
+
+</html>

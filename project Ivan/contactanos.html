@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phineas solution</title>
+    <!--Bootstrap 5.2-->
+    <link rel="stylesheet" href="style.css">
+    <!--FontAwesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Animation css-->
+    
+</head>
+<body>
+  
+<!--Menu vista web-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top px-3 px-md-5">
+  <div id="main-menu" class="container-fluid">
+  </div>
+</nav>  
+
+<main>
+  <!-- Banner de contactanos -->
+  <header class="pt-5 pb-5 text-primary" style="background-color: #9E4FFF;">
+    <div class="container">
+      <div class="row align-content-center">
+        <div class="col-12 col-lg-6 ps-3 ps-md-0">
+          <h2 class="fw-semibold text-light">Contactar con nosotros</h2>
+        </div>
+        <div class="col-12 col-lg-6"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Formulario de contactanos y btn para mensajeria -->
+  <section class="pt-5 pb-5">
+    <div class="container">
+      <div class="row">
+
+        <!-- Info basica y ubicacion -->
+        <div class="col-12 col-lg-6 order-2 order-md-1 pt-5 pb-5 ps-4 ps-md-0">
+          <!--<img src="features/img/d1c44bdb-fc2a-4d52-8551-a259a2a751e9.png" alt="" class="img-fluid">-->
+          <h2>Phineas CO</h2><br>
+          <div class="lh-sm">
+            <span class="fw-bolder">Ubicación Principal</span><br>
+            <span>Barranquilla</span><br>
+            <span>Colombia</span><br><br>
+          </div>
+
+          <div class="lh-sm pb-4">
+            <span>Teléfono: (571) 326 4700</span><br>
+            <span>Correo: info@phineas-soluciones.com</span><br>
+          </div>
+
+          <hr class="w-75">
+          <div class="w-75">
+            <h5>Chatea con nosotros</h5>
+            <span>Utiliza la aplicación de mensajeria favorita y comienza a comentarnos sus ideas más a detalle.</span>
+          </div>
+          <div class="mt-3">
+            <div class="pt-4">
+              <button type="button" class="btn btn-wsp-color text-light"><i
+                  class="fab fa-whatsapp pe-1"></i>WhatsApp</button>
+              <button type="button" class="btn btn-messenger-color text-light"><i
+                  class="fab fa-facebook-messenger pe-1"></i>Messenger</button>
+            </div>
+          </div>
+        </div>
+        <!--Formulario de contactanos-->
+        <div class="col-12 col-lg-6 mb-5 shadow-lg pt-5 pb-5 px-md-5 py-md-5 order-1 order-md-2">
+          <h3 class="fw-light pb-2 ps-2 ps-md-0">¿Sobre qué temas te gustaría conversar?</h3>
+        <form class="needs-validation" id="contactForm" novalidate>
+          <div class="container">
+            <div class="row">
+              <!--Pregunta 1-->
+              <div class="col-12 col-lg-6 mb-3">
+                <label for="nameCustomer" class="form-label">Nombre*</label>
+                <input type="text" class="form-control" id="nameCustomer" name="name" required minlength="3">
+                <!--Validacion-->
+                <div class="invalid-feedback">Falta completar este campo!</div>
+              </div>
+              <!--Pregunta 2-->
+              <div class="col-12 col-lg-6 mb-3">
+                <label for="lastnameCustomer" class="form-label">Apellido*</label>
+                <input type="text" class="form-control" id="lastnameCustomer" name="lastName" required minlength="3">
+                <!--Validacion-->
+                <div class="invalid-feedback">Falta completar este campo!</div>
+              </div>
+              <!--Pregunta 3-->
+              <div class="col-12 col-lg-6 mb-3">
+                <label for="cellphoneCustomer" class="form-label">Teléfono*</label>
+                <input type="tel" class="form-control" placeholder="(+--) (----) (----)" id="cellphoneCustomer" name="phone" required>
+                <!--Validacion-->
+                <div class="invalid-feedback">Verifique su contacto!</div>
+              </div>
+              <!--Pregunta 4-->
+              <div class="col-12 col-lg-6 mb-3">
+                <label for="businessCustomer" class="form-label">Empresa / Startup*</label>
+                <input type="text" class="form-control" placeholder="ejemplo S.A" id="businessCustomer" name="business" required>
+                <!--Validacion-->
+                <div class="invalid-feedback">Falta completar este campo!</div>
+              </div>
+              <!--Pregunta 5-->
+              <div class="col-12 mb-3">
+                <label for="mailCustomer" class="form-label">Correo electrónico*</label>
+                <input type="email" class="form-control" id="mailCustomer" aria-describedby="emailHelp" name="mail" required>
+                <!--Validacion-->
+                <div class="invalid-feedback">Verifique su correo!</div>
+                <div id="emailHelp" class="form-text">Nunca compartiremos su correo electrónico con nadie más.</div>
+              </div>
+              <!--Pregunta 6-->
+              <div class="col-12 mb-3">
+                <label for="subjectCustomer">Asunto*</label>
+                <textarea class="form-control" id="subjectCustomer" rows="4" maxlength="300" name="subject" required></textarea>
+                <!--Validacion-->
+                <div class="invalid-feedback">Necesitamos una descripción de la consulta</div>
+                <div class="form-text">Capacidad maxima de 300 Caracteres.</div>
+                <div class="pt-3">Al enviar estas aceptando las <b role="button" onclick="window.open('../politica-de-privacidad.html')">politicas de privacidad</b> que protege tus datos.
+                </div>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary rounded-0" id="buttonSubmit">Enviar Caso
+              <span class="spinner-border spinner-border-sm ms-1 d-none" role="status" aria-hidden="true" id="loader"></span>
+            </button>
+
+            <div class="alert alert-approved mt-3 d-none" role="alert" id="response">
+              <i class="far fa-check-circle"></i> Correo solicitud enviada con exito
+            </div>
+            
+
+
+          </div>
+        </form>
+        
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+<section class="pb-5 pt-5" style="background-color: #f5f5f5;">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h5 class="fw-light ps-2 ps-md-0">Más opciones de apoyo</h5>
+      </div>
+      <hr>
+      <div class="col-12 col-lg-4 p-4">
+        <a href="" class="fw-regular" style=" font-size: 1em;">
+          Prueba de productos</a>
+        <p class="pt-2">Realiza un periodo de prueba de nuestros productos, experimenta una de las posibilidades para
+          hallar
+          mejoras en tus ciclos de trabajo.
+        </p>
+      </div>
+      <div class="col-12 col-lg-4 p-4">
+        <a href="" class="fw-regular" style=" font-size: 1em;">
+          Capacitaciones</a>
+        <p class="pt-2">Contamos con profesionales con una larga trayectoria en tematicas de metodología de trabajo,
+          Analitica de datos
+          ECM Onbase.
+        </p>
+      </div>
+      <div class="col-12 col-lg-4 p-4">
+        <a href="" class="fw-regular" style=" font-size: 1em;">
+          Pasatias y apoyo al empleado</a>
+        <p class="pt-2">Si necesitas apoyos en tu formación o en la adquisición de experiencia laboral, Phineas abre
+          las puertas
+          a todo aquel que este facinado al mundo del mañana.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+</main>
+
+<!--Footer-->
+<footer>
+  <div id="phineas-footer" class="container-fluid">
+
+  </div>
+</footer>
+
+
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="template.js"></script>
+
+<!--Script para validación y envio de formulario-->
+<script>
+
+
+  //Hacer una funcion con este script y no realizarla hasta que esten todos los campos requeridos esten completos
+
+  document.getElementById('buttonSubmit').addEventListener('click', function(e){
+    e.preventDefault();
+    document.getElementById('loader').classList.remove("d-none");
+    
+    //Fetch form to apply custom Bootstrap validation
+    let form = document.getElementById("contactForm");
+    console.log(form[0]);
+
+    if (form.checkValidity() === false) {
+      event.preventDefault()
+      event.stopPropagation()
+      document.getElementById('loader').classList.add("d-none");
+    }else{
+
+      fetch("https://www.phineas-soluciones.com/mail-script.php", {
+    method: "POST",
+    body: new FormData(form),
+    mode: "cors"
+})
+    .then(res => res.ok ? res.json() : Promise.reject(res))
+    .then(json => {
+      console.log(json);
+      document.getElementById('loader').classList.add("d-none");
+      document.getElementById('response').classList.remove("d-none");
+      document.getElementById("contactForm").reset();
+      document.getElementById("contactForm").classList.remove("was-validated");
+    })
+    .catch(err => {
+      console.log(err);
+      let message = err.statusText ||"Ocurrió un problema al enviar, intenta nuevamente";
+      
+    })
+    .finally(()=> setTimeout(() => {
+      document.getElementById('response').classList.add("d-none");
+    },3000));
+    }
+    
+    form.classList.add('was-validated');
+    
+
+ })  
+
+
+
+ 
+
+</script>
+
+
+
+<!--
+   document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('loader').classList.remove("d-none");
+
+fetch("https://formsubmit.co/ajax/larnedo97@gmail.com", {
+    method: "POST",
+    body: new FormData(e.target)
+})
+    .then(res => res.ok ? res.json() : Promise.reject(res))
+    .then(json => {
+      console.log(json);
+      document.getElementById('loader').classList.add("d-none");
+      document.getElementById('response').classList.remove("d-none");
+      document.getElementById('response').classList.remove("d-none");
+      document.getElementById("contactForm").reset();
+      document.getElementById("contactForm").classList.remove("was-validated");
+    })
+    .catch(err => {
+      console.log(err);
+      let message = err.statusText ||"Ocurrió un problema al enviar, intenta nuevamente";
+      
+    })
+    .finally(()=> setTimeout(() => {
+      document.getElementById('response').classList.add("d-none");
+    },3000));
+
+ })
+-->
+
+
+<!--
+   PHP Forms
+
+   //Hacer una funcion con este script y no realizarla hasta que esten todos los campos requeridos esten completos
+
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('loader').classList.remove("d-none");
+
+fetch("https://www.phineas-soluciones.com/mail-script.php", {
+    method: "POST",
+    body: new FormData(e.target),
+    mode: "cors"
+})
+    .then(res => res.ok ? res.json() : Promise.reject(res))
+    .then(json => {
+      console.log(json);
+      document.getElementById('loader').classList.add("d-none");
+      document.getElementById('response').classList.remove("d-none");
+      document.getElementById('response').classList.remove("d-none");
+      document.getElementById("contactForm").reset();
+      document.getElementById("contactForm").classList.remove("was-validated");
+    })
+    .catch(err => {
+      console.log(err);
+      let message = err.statusText ||"Ocurrió un problema al enviar, intenta nuevamente";
+      
+    })
+    .finally(()=> setTimeout(() => {
+      document.getElementById('response').classList.add("d-none");
+    },3000));
+
+ })   
+
+-->
+
+</body>
+</html>
+
+

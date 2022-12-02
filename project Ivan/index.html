@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clientmail</title>
+  <!--Bootstrap 5.2-->
+  <link rel="stylesheet" href="style.css">
+  <!--FontAwesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!--Animation css-->
+
+</head>
+
+<body class="row bg-primary align-items-center justify-content-center vh-100" style="overflow: hidden;">
+  <main>
+    <!--Login-->
+    <section>
+      <div class="container w-content">
+        <div class="row">
+          <div class="col-12 pt-5 pb-4 bg-info" style="border-radius: 10px; padding-left: 35px; padding-right: 35px;">
+            <!--Cabecera login - inicio-->
+            <ul class="lh-1 p-0">
+              <li class="list-group-item lh-1">
+                <h1 class="m-0 fw-bolder">Client<span class="text-success">mail</span></h1></li>
+              <li class="list-group-item lh-1">
+                <h3 class="m-0">Welcome!</h3></li>
+            </ul>
+            <!--Cabecera login - fin-->
+            
+            <!--Login form - Inicio-->
+            <form class="pt-3 needs-validation" novalidate>
+              <div class="mb-3">
+                <!--Usuario-->
+                <input type="email" class="form-control rounded-pill" id="loginEmail" placeholder="Usermail"
+                  aria-describedby="emailHelp" required>
+                <div class="invalid-feedback">
+                  Please verified your usermail!
+                </div>
+              </div>
+              <!--Password-->
+              <div class="mb-3">
+                <input type="password" class="form-control rounded-pill" placeholder="Password" id="loginEmail" required>
+                <div class="invalid-feedback">
+                  Please verified your password!
+                </div>
+              </div>
+              <div class="d-grid gap-2">
+                <button class="btn btn-secondary rounded-pill fw-semibold" type="submit" onclick="location.href='inbox.html';">Log in</button>
+              </div>
+            </form>
+            <!--Login form - fin-->
+
+            <!--Create new account - Inicio-->
+            <div class="pt-5 text-center">
+              <span>
+                Don't have an account? <b role="button" onclick="location.href='registre.html';">Sing up now</b>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section> 
+  </main>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+  </script>
+</body>
+
+</html>
