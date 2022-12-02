@@ -12,6 +12,7 @@ $headings-font-style:         'Public Sans', sans-serif;
 
 $primary:       #142123;
 $secondary:     #00FF7F;
+$complement:    #20373A;
 $success:       #FFC50A;
 $light:         #fff;
 $dark:          #000;
@@ -66,16 +67,17 @@ $nav-tabs-link-active-bg:          $success;
 
 
 $theme-colors: (
-  "primary":    $primary,
-  "secondary":  $secondary,
+  "primary":     $primary,
+  "secondary":   $secondary,
   "success":     $success,
-  "info":       $info,
-  "warning":    $warning,
-  "danger":    $danger, 
-  "light":      $light,
-  "dark":       $dark,
-  "approved":   $approved,
-  "gray":       $color-link
+  "info":        $info,
+  "warning":     $warning,
+  "danger":      $danger, 
+  "light":       $light,
+  "dark":        $dark,
+  "complement":  $complement,
+  "approved":    $approved,
+  "gray":        $color-link
 );
 
 
