@@ -114,7 +114,13 @@
         username: email,
         password:pass
       }).then(function (response) {
-        showToastInfo("ok");
+        console.log(response);
+        sessionStorage.setItem("idUser",response.data.User.id_user);
+        const fullName = response.data.User.first_name + response.data.User.last_name
+        sessionStorage.setItem("fullName",fullName);
+        sessionStorage.setItem("isPremium",response.data.is_premium);
+        window.location.href = "inbox.html";
+
       }).catch(function (error) {
         showToastError(error.response.data);
       });

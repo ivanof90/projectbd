@@ -19,6 +19,25 @@
 <body class="bg-primary">
 
   <div class="main-container d-flex">
+    <div class="toast-container top-0 end-0">
+      <div id="toast-info" class="toast align-items-center bg-approved border-0 opacity-50 bg-gradient" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div id="toast-body-info" class="toast-body text-dark">
+            Hello, world! This is a toast message.
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+      <div id="toast-error" class="toast align-items-center bg-danger border-0 opacity-50" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div id="toast-body-error" class="toast-body text-light">
+            Hello, world! This is a toast message.
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
     <div class="siderbar" id="side_nav">
       <div class="header-box d-flex justify-content-end">   
         <h3 class="m-0 fw-bolder text-light text-center pt-3 pb-3 px-4 mx-5">Client<span class="text-success">mail</span></h3>
@@ -54,7 +73,7 @@
         <li class="">
           <a href="#" class="text-decoration-none px-3 py-3 d-block">
             <i class="fas fa-trash"></i> Trash
-          </a>  
+          </a>
         </li>
       </ul>
       <!--Opciones del menu - fin-->
@@ -130,7 +149,7 @@
 
       <!--Body inbox-->
       <section>
-        <div class="dashboard-content bg-complement text-white" style="overflow: hidden; height: 90vh; border-radius: 21px 0 0 0;">
+        <div class="dashboard-content bg-complement text-white" style="overflow: scroll; height: 90vh; border-radius: 21px 0 0 0;">
           <!--Request-->
           <section>
             
@@ -140,15 +159,15 @@
                     <div class="d-flex flex-row mb-3">
                       <div class="p-2">
                         <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+
                         </div>
                     </div>
                     <!--titulo filtro-->
-                    <div class="p-2">Filter Category:</div>
+                    <div class="p-2">Filter :</div>
                     <!--buscar correo-->
                     <div class="p-2"><form class="d-flex" role="search">
                       <div class="input-group input-group-sm">
-                      <input class="form-control me-2 text-light" type="search" placeholder="Search email..." aria-label="Search" style="border-radius: 15px; background: none;">
+                      <input id="emailFilter" class="form-control me-2 text-light" type="search" placeholder="Search by email address..." aria-label="Search" style="border-radius: 15px; background: none;">
                       </div>
                       <button class="btn btn-outline-success d-none" type="submit">Search</button>
                     </form>
@@ -156,47 +175,24 @@
                     <!--Seleccionar categoria-->
                     <div class="p-2">
                       <div class="input-group input-group-sm">
-                      <select class="form-select text-light" aria-label="Default select example" placeholder="Select a category" style="background: none; border-radius: 15px;">
-                        <option class="text-dark" selected>--Select a category--</option>
-                        <option class="text-dark" value="1">Family</option>
-                        <option class="text-dark" value="2">Job</option>
-                        <option class="text-dark" value="2">game</option>
-                        <option class="text-dark" value="3">Important</option>
+                      <select id="categoryFilter" class="form-select text-light" aria-label="Default select example" placeholder="Select a category" style="background: none; border-radius: 15px;">
+                        <option class="text-dark" value="" selected>--Select a category--</option>
                       </select>
                      </div>
                     </div>
                     <!--acciones-->
                     <div class="p-2 d-flex">
-                      <div role="button" class="text-secondary me-3">
-                        <i class="fas fa-sync-alt"></i>
-                      </div>
-                      <div role="button" class="text-secondary me-3">
-                        <i class="fas fa-trash"></i>
+                      <div role="button" class="text-secondary me-3" onclick="searchEmail()">
+                        <i class="fas fa-sync-alt" id="syncButton"></i>
+                        <span class="spinner-border spinner-border-sm ms-1 d-none" role="status" aria-hidden="true" id="loader"></span>
                       </div>
                     </div>
-                    <!--Paginacion-->
-                    <div class="p-2 d-flex">
-                      <ul class="pagination pagination-sm">
-                        <li class="page-item disabled">
-                          <span class="page-link"><i class="fas fa-chevron-left"></i></span>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item" aria-current="page"><span class="page-link">2</span></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                        <li class="page-item">
-                          <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                        </li>
-                      </ul>
-                    </div>                     
                   </div>                   
                     <table class="table text-light">
-                      <tbody>
+                      <tbody id="tbody">
                         <!--Inicio de registro 1-->
                         <tr role="button">
-                          <!--check-->                          
-                          <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+
                           <!--User-->   
                           <td>Jimmy Donaldson</td>
                           <!--mail-->
@@ -212,8 +208,7 @@
 
                         <!--Inicio de registro 2-->
                         <tr role="button">
-                          <!--check-->                          
-                          <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+
                           <!--User-->   
                           <td>Félix Lengyel</td>
                           <!--mail-->
@@ -244,23 +239,135 @@
   
     
   </main>
-
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
   <!--Codigo opcional-->
   <script>
-    $(".siderbar ul li").on('click' , function(){
-      $(".siderbar ul li.active").removeClass('active');
-      $(this).addClass('active');
-    });
+    const idUser = sessionStorage.getItem("idUser");
+    if(!idUser){
+      window.location.href = "index.html"
+    }
+    const tbody = document.getElementById("tbody");
+    const emailFilter = document.getElementById("emailFilter");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const loader = document.getElementById('loader');
+    const syncButton = document.getElementById('syncButton');
 
-     $('.open-btn').on('click', function(){
-     $('.siderbar').addClass('active');      
-    });
+    const urlBase = "http://127.0.0.1:5000";
+    const toastLiveInfo = new bootstrap.Toast(document.getElementById('toast-info'));
+    const toastLiveError = new bootstrap.Toast(document.getElementById('toast-error'));
+    const toastLiveInfoMessage = document.getElementById("toast-body-info");
+    const toastLiveErrorMessage = document.getElementById("toast-body-error");
 
-     $('.close-btn').on('click', function(){
-     $('.siderbar').removeClass( 'active');      
-    });
+    function showToastInfo(msg){
+      toastLiveInfoMessage.innerHTML = msg;
+      toastLiveInfo.show();
+    }
+    function showToastError(msg){
+      toastLiveErrorMessage.innerHTML = msg;
+      toastLiveError.show();
+    }
+
+    function loadCategoryList(){
+      axios.get(urlBase+'/404/user/'+idUser+'/email/categorylist')
+              .then(function (response) {
+                for(const data in response.data.Category){
+                  generateOptionValue(response.data.Category[data]);
+                }
+              }).catch(function (error) {
+        showToastError(error.response.data);
+      });
+    }
+
+    function loadEmail() {
+      loadingStart();
+      clearTable();
+      axios.get(urlBase + '/404/user/' + idUser + '/email/inbox')
+              .then(function (response) {
+                for (const data in response.data.Inbox) {
+                  console.log(response.data.Inbox[data]);
+                  insertRegister(response.data.Inbox[data]);
+                  loadingStop();
+                }
+              }).catch(function (error) {
+        showToastError(error.response.data);
+        loadingStop();
+      });
+    }
+
+    function searchEmail() {
+      loadingStart();
+      queryParam = "";
+      if (emailFilter.value.trim()!=='') {
+        queryParam += "&email=" + emailFilter.value;
+      }
+      if (categoryFilter.value.trim()!=='') {
+        queryParam += "&category=" + categoryFilter.value;
+      }
+      clearTable();
+      if (!queryParam) {
+        loadEmail();
+      } else {
+        axios.get(urlBase + '/404/user/' + idUser + '/email/inbox/search?' + queryParam)
+                .then(function (response) {
+                  for (const data in response.data.Inbox) {
+                    console.log(response.data.Inbox[data]);
+                    insertRegister(response.data.Inbox[data]);
+                    loadingStop();
+                  }
+                }).catch(function (error) {
+          showToastError(error.response.data);
+          loadingStop();
+        });
+      }
+
+
+    }
+
+    function insertRegister(data){
+      const text = "  <tr role=\"button\">" +
+              "<td>"+data.full_name+"</td>"+
+              "<td><span>"+data.from+"</span></td>" +
+              "<td>"+generateCategoryTags(data)+"</td>" +
+              "<td>"+data.subject+"</td>" +
+              "<td><date>"+data.date_sended+"</date></td>" +
+              "</tr>"
+
+      tbody.innerHTML += text;
+    }
+
+    function clearTable(){
+      tbody.innerHTML =  "";
+    }
+
+    function generateCategoryTags(data){
+      var spanCat = "";
+      const categories = data.categories;
+      for (const cat in categories){
+        spanCat += "<span class=\"badge text-bg-success\">"+categories[cat]+"</span></td>";
+      }
+      return spanCat;
+    }
+
+    function generateOptionValue(data){
+      categoryFilter.innerHTML += "<option class='text-dark' value='"+data+"'>"+data+"</option>";
+    }
+
+    function loadingStart(){
+      syncButton.classList.add("d-none");
+      loader.classList.remove("d-none");
+    }
+    function loadingStop(){
+      loader.classList.add("d-none");
+      syncButton.classList.remove("d-none");
+    }
+
+
+    loadCategoryList();
+    loadEmail();
+
+
 
   </script>
   
