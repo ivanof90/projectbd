@@ -96,8 +96,14 @@ $theme-colors: map-merge($theme-colors, $messenger-color);
 /*CSS Styles for siderbar*/
 
 #side_nav{
+  background-color: $primary;
   min-width: 280px;
   max-width: 280px;
+  transition: all 0.3s;
+}
+
+.nav-actions{
+  font-size: 1.2em;
 }
 
 .content{
@@ -105,10 +111,21 @@ $theme-colors: map-merge($theme-colors, $messenger-color);
   width: 100%;
 }
 
-.sidebar li.active{
-  background-color: white;
-  border-radius: 8px;
+.siderbar a{
+  color: #F0F6F3;
 }
+
+.siderbar a:hover{
+  color: #29E487;
+}
+
+
+.siderbar li.active a, .siderbar li.active a:hover{
+  color: $secondary;
+  font-weight: 600;
+} 
+
+
 
 
 
@@ -152,8 +169,22 @@ btn-border-1{
   .w-content-create{
     width: 90% !important;
   }
+}
+ 
 
-   
+
+@media (max-width: 767px) {
+  
+  #side_nav{
+    margin-left: -300;
+    position: fixed;
+    min-height: 100vh;
+    z-index: 1;
+  }
+
+  #side_nav.active{
+    margin-left: 0;
+  }
 }
  
 

@@ -17,15 +17,17 @@
 </head>
 
 <body class="bg-complement">
+  <nav>
   <div class="main-container d-flex">
-    <div class="siderbar bg-primary" id="side_nav">
-      <div class="header-box">
-        <h3 class="m-0 fw-bolder text-light text-center pt-3">Client<span class="text-success">mail</span></h3>
-        <button class="btn d-block d-md-none close-btn px-1 py-0 text-white"><i class="fas fa-bars"></i></button>
+    <div class="siderbar" id="side_nav">
+      <div class="header-box d-flex justify-content-end">   
+        <h3 class="m-0 fw-bolder text-light text-center pt-3 pb-3 px-4 mx-5">Client<span class="text-success">mail</span></h3>
+        <button class="btn d-block d-md-none close-btn px-4 py-0 text-white"><i class="fas fa-stream"></i></button>
       </div>
+      
       <!--Opciones del menu-->
-      <ul class="list-undstyled px-2">
-        <li class="list-group-item text-center pb-3">
+      <ul class="list-undstyled px-2 lh-1 nav-actions">
+        <li class="text-center pb-2">
           <button class="btn btn-secondary btn-lg fw-semibold btn-border-1 pt-2 pb-2" type="button" onclick="location.href='inbox.html';" >
             Compose <i class="fas fa-mail-bulk"></i></button>
         </li>
@@ -41,7 +43,7 @@
         </li>
         <li class="">
           <a href="#" class="text-decoration-none px-3 py-3 d-block">
-            <i class="fas fa-star"></i> Important
+            <i class="fas fa-exclamation-circle"></i> Important
           </a>  
         </li>
         <li class="d-block">
@@ -55,75 +57,99 @@
           </a>  
         </li>
       </ul>
+      <!--Opciones del menu - fin-->
 
       <hr class="mx-4 text-light">
 
-        <ul class="list-undstyled px-2 lh-lg">
-          <li class="list-group-item text-light pb-2">
+      <!--Amigos recientes - Inicio-->
+        <ul class="list-undstyled px-2 lh-1 pb-1">
+          <li class="pb-2 px-3 py-3">
             <h6 class="text-light">Recent Friends</h6>
           </li>
 
-          <li class="text-light pb-2">
+          <li class="pb-3">
+            <a href="#" class="text-decoration-none px-3 py-3">
             <img src="img/user1.png" alt="" class="img-fluid pe-1" style="height: 30px;">
             <span>Jimmy Donaldson</span>
+            </a>
           </li>
-          <li class="text-light pb-2">
+
+          <li class="pb-3">
+            <a href="#" class="text-decoration-none px-3 py-3">
             <img src="img/user2.png" alt="" class="img-fluid pe-1" style="height: 30px;">
             <span>Félix Lengyel</span>
+            </a>
           </li>
-          <li class="text-light pb-2">
+
+          <li class="pb-3">
+            <a href="#" class="text-decoration-none px-3 py-3">
             <img src="img/user3.png" alt="" class="img-fluid pe-1" style="height: 30px;">
             <span>Richard Tyler</span>
+            </a>
           </li>
-          <li class="text-light pb-2">
+
+          <li class="pb-3">
+            <a href="#" class="text-decoration-none px-3 py-3">
             <img src="img/user4.png" alt="" class="img-fluid pe-1" style="height: 30px;">
             <span>Hasbulla Magomedov</span>
+            </a>
           </li>
         </ul>
-
-        
-
+      <!--Amigos recientes - fin-->
     </div>
     
     <div class="content">
-
+      <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+        <div class="container-fluid">
+          <!--Logo bar - Inicio-->
+          <div class="d-flex justify-content-between d-block d-md-none">
+          <h5 class="m-0 fw-bolder text-light text-center pt-3 pb-3">Client<span class="text-success">mail</span></h5>
+          <button class="btn px-1 py-0 open-btn text-white">
+            <i class="fas fa-stream"></i>
+          </button>
+          </div>
+          <!--Logo bar - Fin-->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">
+                  <i class="fas fa-power-off"></i>
+                </a>
+              </li>
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
     </div>
   </div>
-
-
-  <!--
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <h3 class="m-0 fw-bolder">Client<span class="text-success">mail</span></h3>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
-        </ul>
-      </div>
-    </div>
   </nav>
   
   <main>
     
-  </main>-->
+  </main>
 
   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <!--Codigo opcional-->
+  <script>
+    $(".siderbar ul li").on('click' , function(){
+      $(".siderbar ul li.active").removeClass('active');
+      $(this).addClass('active');
+    });
+
+     $('.open-btn').on('click', function(){
+     $('.siderbar').addClass('active');      
+    });
+
+     $('.close-btn').on('click', function(){
+     $('.siderbar').removeClass( 'active');      
+    });
+
+  </script>
   
 </body>
 

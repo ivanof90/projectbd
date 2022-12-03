@@ -5,8 +5,14 @@
 /*blue-ALT #00B2FF*/
 /*CSS Styles for siderbar*/
 #side_nav {
+  background-color: #142123;
   min-width: 280px;
   max-width: 280px;
+  transition: all 0.3s;
+}
+
+.nav-actions {
+  font-size: 1.2em;
 }
 
 .content {
@@ -14,9 +20,17 @@
   width: 100%;
 }
 
-.sidebar li.active {
-  background-color: white;
-  border-radius: 8px;
+.siderbar a {
+  color: #F0F6F3;
+}
+
+.siderbar a:hover {
+  color: #29E487;
+}
+
+.siderbar li.active a, .siderbar li.active a:hover {
+  color: #00FF7F;
+  font-weight: 600;
 }
 
 /*CSS Styles*/
@@ -46,6 +60,17 @@ btn-border-1 {
   }
   .w-content-create {
     width: 90% !important;
+  }
+}
+@media (max-width: 767px) {
+  #side_nav {
+    margin-left: -300;
+    position: fixed;
+    min-height: 100vh;
+    z-index: 1;
+  }
+  #side_nav.active {
+    margin-left: 0;
   }
 }
 /*!
