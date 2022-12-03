@@ -18,6 +18,25 @@
 
 <body class="row bg-primary align-items-center justify-content-center vh-100" style="overflow: hidden;">
   <main>
+    <div class="toast-container top-0 end-0">
+      <div id="toast-info" class="toast align-items-center bg-approved border-0 opacity-50 bg-gradient" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div id="toast-body-info" class="toast-body text-dark">
+            Hello, world! This is a toast message.
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+      <div id="toast-error" class="toast align-items-center bg-danger border-0 opacity-50" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div id="toast-body-error" class="toast-body text-light">
+            Hello, world! This is a toast message.
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
     <!--Login-->
     <section>
       <div class="container w-content">
@@ -37,20 +56,23 @@
               <div class="mb-3">
                 <!--Usuario-->
                 <input type="email" class="form-control rounded-pill" id="loginEmail" placeholder="Usermail"
-                  aria-describedby="emailHelp" required>
+                  aria-describedby="emailHelp" pattern="(.|\s)*\S(.|\s)*" required>
                 <div class="invalid-feedback">
                   Please verified your usermail!
                 </div>
               </div>
               <!--Password-->
               <div class="mb-3">
-                <input type="password" class="form-control rounded-pill" placeholder="Password" id="loginEmail" required>
+                <input type="password" class="form-control rounded-pill" placeholder="Password" id="loginPassword" required>
                 <div class="invalid-feedback">
                   Please verified your password!
                 </div>
               </div>
               <div class="d-grid gap-2">
-                <button class="btn btn-secondary rounded-pill fw-semibold" type="submit" onclick="location.href='inbox.html';">Log in</button>
+                <button class="btn btn-secondary rounded-pill fw-semibold" type="submit" >
+                  Log in
+                  <span class="spinner-border spinner-border-sm ms-1 d-none" role="status" aria-hidden="true" id="loader"></span>
+                </button>
               </div>
             </form>
             <!--Login form - fin-->
@@ -68,24 +90,73 @@
 
     </section> 
   </main>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script>
+
+    const urlBase = "http://127.0.0.1:5000";
+    const toastLiveInfo = new bootstrap.Toast(document.getElementById('toast-info'));
+    const toastLiveError = new bootstrap.Toast(document.getElementById('toast-error'));
+    const toastLiveInfoMessage = document.getElementById("toast-body-info");
+    const toastLiveErrorMessage = document.getElementById("toast-body-error");
+
+    function showToastInfo(msg){
+      toastLiveInfoMessage.innerHTML = msg;
+      toastLiveInfo.show();
+    }
+    function showToastError(msg){
+      toastLiveErrorMessage.innerHTML = msg;
+      toastLiveError.show();
+    }
+
+    function login(email,pass){
+      axios.post(urlBase+'/404/user/login', {
+        username: email,
+        password:pass
+      }).then(function (response) {
+        showToastInfo("ok");
+      }).catch(function (error) {
+        showToastError(error.response.data);
+      });
+    }
+    const urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.has('userCreated')){
+        showToastInfo("User registered succesfully");
+    }
+
+
+
+
+
     // Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {
   'use strict'
 
+
+
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
   const forms = document.querySelectorAll('.needs-validation')
-
   // Loop over them and prevent submission
   Array.from(forms).forEach(form => {
     form.addEventListener('submit', event => {
+      document.getElementById('loader').classList.remove("d-none");
       if (!form.checkValidity()) {
         event.preventDefault()
         event.stopPropagation()
+      }else{
+        form.classList.add('was-validated')
+        var loginEmail = document.getElementById("loginEmail").value;
+        var loginPassword = document.getElementById("loginPassword").value;
+        console.log(loginEmail);
+        //var loginPassword = form.getElementById("loginPassword").getValue();
+        login(loginEmail,loginPassword);
+        event.preventDefault()
+        event.stopPropagation()
       }
+      document.getElementById('loader').classList.add("d-none");
 
       form.classList.add('was-validated')
+
     }, false)
   })
 })()

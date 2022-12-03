@@ -18,7 +18,25 @@
 
 <body class="row bg-primary align-items-center justify-content-center vh-100" style="overflow: hidden;">
   <main>
-    <!--Login-->
+    <div class="toast-container top-0 end-0">
+      <div id="toast-info" class="toast align-items-center bg-approved border-0 opacity-50 bg-gradient" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div id="toast-body-info" class="toast-body text-dark">
+            Hello, world! This is a toast message.
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+      <div id="toast-error" class="toast align-items-center bg-danger border-0 opacity-50" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div id="toast-body-error" class="toast-body text-light">
+            Hello, world! This is a toast message.
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+    <!--Register-->
     <section>
       <div class="container w-content-create">
         <div class="row">
@@ -31,7 +49,8 @@
             <!--Cabecera login - fin-->
             
             <!--Login form - Inicio-->
-            <form class="pt-3 needs-validation" novalidate>
+            <form class="pt-3 needs-validation" novalidate
+                  oninput='up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : "")'>
               <div class="container">
                 <div class="row">
               <!--Nombre-->
@@ -61,7 +80,7 @@
               <!--Password-->
               <div class="mb-3 col-12 col-md-6">
                 <small for="passwordRequest" class="form-label ps-2 fw-semibold">Password*</small>
-                <input type="password" class="form-control rounded-pill" id="passwordRequest" required>
+                <input type="password" class="form-control rounded-pill" name="up" id="passwordRequest" required>
                 <div class="invalid-feedback">
                   Please verified your new password!
                 </div>
@@ -69,7 +88,7 @@
               <!--Confirm Password-->
               <div class="mb-3 col-12 col-md-6">
                 <small for="verifiedPasswordRequest" class="form-label ps-2 fw-semibold">Confirm Password*</small>
-                <input type="password" class="form-control rounded-pill" id="verifiedPasswordRequest" required>
+                <input type="password" class="form-control rounded-pill" name="up2" id="verifiedPasswordRequest" required>
                 <div class="invalid-feedback">
                   Please verified your new password!
                 </div>
@@ -81,7 +100,10 @@
               </div>
               <!--Boton de enviar-->
               <div class="d-grid gap-2 pt-4">
-                <button class="btn btn-secondary rounded-pill fw-semibold" type="submit">Create Account</button>
+                <button class="btn btn-secondary rounded-pill fw-semibold" type="submit">
+                  Create Account
+                  <span class="spinner-border spinner-border-sm ms-1 d-none" role="status" aria-hidden="true" id="loader"></span>
+                </button>
               </div>
 
             </div>
@@ -102,8 +124,40 @@
 
     </section> 
   </main>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script>
+
+    const urlBase = "http://127.0.0.1:5000";
+    const toastLiveInfo = new bootstrap.Toast(document.getElementById('toast-info'));
+    const toastLiveError = new bootstrap.Toast(document.getElementById('toast-error'));
+    const toastLiveInfoMessage = document.getElementById("toast-body-info");
+    const toastLiveErrorMessage = document.getElementById("toast-body-error");
+
+    function showToastInfo(msg){
+      toastLiveInfoMessage.innerHTML = msg;
+      toastLiveInfo.show();
+    }
+    function showToastError(msg){
+      toastLiveErrorMessage.innerHTML = msg;
+      toastLiveError.show();
+    }
+
+    function register(firstname,lastname,mail,pass,premium){
+      axios.post(urlBase+'/404/user/create', {
+        first_name:firstname,
+        last_name:lastname,
+        password:pass,
+        is_premium:premium,
+        email:mail
+      }).then(function (response) {
+        window.location.href = "index.html?userCreated"
+      }).catch(function (error) {
+        showToastError(error.response.data);
+      });
+    }
+
+
     // Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {
   'use strict'
@@ -113,11 +167,26 @@
 
   // Loop over them and prevent submission
   Array.from(forms).forEach(form => {
+
     form.addEventListener('submit', event => {
+      document.getElementById('loader').classList.remove("d-none");
       if (!form.checkValidity()) {
         event.preventDefault()
         event.stopPropagation()
+      }else{
+        form.classList.add('was-validated')
+        var name = document.getElementById("nameRequest").value;
+        var lastname = document.getElementById("lastNameRequest").value;
+        var email = document.getElementById("emailRequest").value;
+        var password = document.getElementById("passwordRequest").value;
+        var premium = document.getElementById("userPremierRequest").checked;
+
+
+        register(name,lastname,email,password,premium)
+        event.preventDefault()
+        event.stopPropagation()
       }
+      document.getElementById('loader').classList.add("d-none");
 
       form.classList.add('was-validated')
     }, false)
