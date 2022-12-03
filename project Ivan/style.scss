@@ -17,6 +17,7 @@ $success:       #FFC50A;
 $light:         #fff;
 $dark:          #000;
 $info:          #f2f2f2;
+$contacts:      #888888;
 $warning:       $red;
 $danger:        #f21d48;
 $approved:      #15D149;
@@ -65,6 +66,17 @@ $form-validation-states: (
 
 $nav-tabs-link-active-bg:          $success;
 
+//edit pagination
+$pagination-color:                  $primary;
+$pagination-bg:                     $complement;
+$pagination-active-bg:              $primary;
+$pagination-border-color:           $gray-600;
+$pagination-disabled-bg:            $gray-400;
+$pagination-color:                  $info;
+
+//table
+$table-border-color:          $primary;
+
 
 $theme-colors: (
   "primary":     $primary,
@@ -77,7 +89,8 @@ $theme-colors: (
   "dark":        $dark,
   "complement":  $complement,
   "approved":    $approved,
-  "gray":        $color-link
+  "gray":        $color-link,
+  "contacts":    $contacts
 );
 
 

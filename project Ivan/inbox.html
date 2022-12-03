@@ -16,8 +16,8 @@
 
 </head>
 
-<body class="bg-complement">
-  <nav>
+<body class="bg-primary">
+
   <div class="main-container d-flex">
     <div class="siderbar" id="side_nav">
       <div class="header-box d-flex justify-content-end">   
@@ -70,35 +70,37 @@
           <li class="pb-3">
             <a href="#" class="text-decoration-none px-3 py-3">
             <img src="img/user1.png" alt="" class="img-fluid pe-1" style="height: 30px;">
-            <span>Jimmy Donaldson</span>
+            <span class="text-contacts">Jimmy Donaldson</span>
             </a>
           </li>
 
           <li class="pb-3">
             <a href="#" class="text-decoration-none px-3 py-3">
             <img src="img/user2.png" alt="" class="img-fluid pe-1" style="height: 30px;">
-            <span>Félix Lengyel</span>
+            <span class="text-contacts">Félix Lengyel</span>
             </a>
           </li>
 
           <li class="pb-3">
             <a href="#" class="text-decoration-none px-3 py-3">
             <img src="img/user3.png" alt="" class="img-fluid pe-1" style="height: 30px;">
-            <span>Richard Tyler</span>
+            <span class="text-contacts">Richard Tyler</span>
             </a>
           </li>
 
           <li class="pb-3">
             <a href="#" class="text-decoration-none px-3 py-3">
             <img src="img/user4.png" alt="" class="img-fluid pe-1" style="height: 30px;">
-            <span>Hasbulla Magomedov</span>
+            <span class="text-contacts">Hasbulla Magomedov</span>
             </a>
           </li>
         </ul>
       <!--Amigos recientes - fin-->
     </div>
     
+    
     <div class="content">
+      <!--Menu-->
       <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
         <div class="container-fluid">
           <!--Logo bar - Inicio-->
@@ -111,24 +113,135 @@
           <!--Logo bar - Fin-->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
+          </button>          
+          
           <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0">
+              <li></li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
+                <a class="nav-link text-secondary active" aria-current="page" href="index.html">
                   <i class="fas fa-power-off"></i>
                 </a>
               </li>
             </ul>
-            
           </div>
         </div>
       </nav>
+
+      <!--Body inbox-->
+      <section>
+        <div class="dashboard-content bg-complement text-white" style="overflow: hidden; height: 90vh; border-radius: 21px 0 0 0;">
+          <!--Request-->
+          <section>
+            
+              <div class="container">
+                <div class="row p-5">
+                  <div class="col-12">
+                    <div class="d-flex flex-row mb-3">
+                      <div class="p-2">
+                        <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        </div>
+                    </div>
+                    <!--titulo filtro-->
+                    <div class="p-2">Filter Category:</div>
+                    <!--buscar correo-->
+                    <div class="p-2"><form class="d-flex" role="search">
+                      <div class="input-group input-group-sm">
+                      <input class="form-control me-2 text-light" type="search" placeholder="Search email..." aria-label="Search" style="border-radius: 15px; background: none;">
+                      </div>
+                      <button class="btn btn-outline-success d-none" type="submit">Search</button>
+                    </form>
+                  </div>
+                    <!--Seleccionar categoria-->
+                    <div class="p-2">
+                      <div class="input-group input-group-sm">
+                      <select class="form-select text-light" aria-label="Default select example" placeholder="Select a category" style="background: none; border-radius: 15px;">
+                        <option class="text-dark" selected>--Select a category--</option>
+                        <option class="text-dark" value="1">Family</option>
+                        <option class="text-dark" value="2">Job</option>
+                        <option class="text-dark" value="2">game</option>
+                        <option class="text-dark" value="3">Important</option>
+                      </select>
+                     </div>
+                    </div>
+                    <!--acciones-->
+                    <div class="p-2 d-flex">
+                      <div role="button" class="text-secondary me-3">
+                        <i class="fas fa-sync-alt"></i>
+                      </div>
+                      <div role="button" class="text-secondary me-3">
+                        <i class="fas fa-trash"></i>
+                      </div>
+                    </div>
+                    <!--Paginacion-->
+                    <div class="p-2 d-flex">
+                      <ul class="pagination pagination-sm">
+                        <li class="page-item disabled">
+                          <span class="page-link"><i class="fas fa-chevron-left"></i></span>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item" aria-current="page"><span class="page-link">2</span></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item">
+                          <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                        </li>
+                      </ul>
+                    </div>                     
+                  </div>                   
+                    <table class="table text-light">
+                      <tbody>
+                        <!--Inicio de registro 1-->
+                        <tr role="button">
+                          <!--check-->                          
+                          <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                          <!--User-->   
+                          <td>Jimmy Donaldson</td>
+                          <!--mail-->
+                          <td><span>Jdonaldson@gmail.com</span></td>
+                          <!--category-->
+                          <td><span class="badge text-bg-danger">Urgent</span></td>
+                          <!--subject-->
+                          <td>1 new job for "User Interface Designer"</td>
+                          <!--subject-->
+                          <td><date>Dec 2022</date></td>
+                        </tr>
+                        <!--fin de registro 1-->
+
+                        <!--Inicio de registro 2-->
+                        <tr role="button">
+                          <!--check-->                          
+                          <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                          <!--User-->   
+                          <td>Félix Lengyel</td>
+                          <!--mail-->
+                          <td><span>flengyel@gmail.com</span></td>
+                          <!--category-->
+                          <td><span class="badge text-bg-success">Game</span></td>
+                          <!--subject-->
+                          <td>friend request about league of legends>></td>
+                          <!--subject-->
+                          <td><date>Dec 2022</date></td>
+                        </tr>
+                        <!--fin de registro 2-->
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            
+
+          </section>
+        </div>
+      </section>
     </div>
   </div>
-  </nav>
+
   
-  <main>
+  
     
   </main>
 
