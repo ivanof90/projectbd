@@ -248,8 +248,8 @@
                     <!--titulo filtro-->
                     <div class="p-2 pe-5">
                       <ul class="lh-sm m-0">
-                        <li class="list-group-item fw-bold"><span>Jimmy Donaldson</span></li>
-                        <li class="list-group-item text-contacts"><span>hi@gmail.com</span></li>
+                        <li class="list-group-item fw-bold"><span id="viewEmailName">Jimmy Donaldson</span></li>
+                        <li class="list-group-item text-contacts"><span id="viewEmailAddress">hi@gmail.com</span></li>
                       </ul>
                     </div>
                     <!--Agregar amigo-->
@@ -285,10 +285,10 @@
                       <!--detalle del mensaje-->
                       <div class="col-12">
                         <div class="d-flex flex-row mb-3">
-                          <div class="fw-bold pe-2">Title :</div>
-                          <div>¡Tu precio de Black Friday sigue! Tómalo ahora</div>
+                          <div class="fw-bold pe-2">Subject :</div>
+                          <div id="viewEmailSubject">¡Tu precio de Black Friday sigue! Tómalo ahora</div>
                           <div class="ms-auto">
-                            <date>03 Diciembre</date>
+                            <date id="viewEmailDate">03 Diciembre</date>
                             <div>
                             </div>
                           </div>
@@ -298,9 +298,9 @@
 
                       <!--Asunto-->
                       <div class="col-12">
-                        <div class="fw-bold pe-2">Subject</div>
+                        <div class="fw-bold pe-2" >Content</div>
                         <div>
-                          <span>
+                          <span id="viewEmailContent">
                             It is a long established fact that a reader will be distracted by the readable content of a
                             page when looking at its layout. The point of using Lorem Ipsum is that it has a
                             more-or-less normal distribution of letters, as opposed to using 'Content here, content
@@ -553,8 +553,7 @@
       loadingStart();
       axios.get(urlBase+'/404/user/'+idUser+'/email/inbox/'+idEmail)
               .then(function (response) {
-                console.log(response);
-                showViewEmail(response)
+                showViewEmail(response.data.Email)
                 loadingStop();
               }).catch(function (error) {
         showToastError(error.response.data);
@@ -565,6 +564,11 @@
     function showViewEmail(data){
       viewBoxSection.classList.add("d-none");
       viewEmailSection.classList.remove("d-none");
+      document.getElementById("viewEmailAddress").innerHTML = data.from;
+      document.getElementById("viewEmailDate").innerHTML = data.date_sended;
+      document.getElementById("viewEmailName").innerHTML = data.name;
+      document.getElementById("viewEmailSubject").innerHTML = data.subject;
+      document.getElementById("viewEmailContent").innerHTML = data.raw_content;
     }
 
     function showViewBox(){

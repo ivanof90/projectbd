@@ -229,6 +229,7 @@
 
           </section>
 
+          <!--watch a message-->
           <section id="viewEmail" class="d-none">
             <div class="dashboard-content bg-complement text-white" style="overflow: hidden; border-radius: 21px 0 0 0;">
               <!--Request-->
@@ -244,26 +245,10 @@
                         <!--titulo filtro-->
                         <div class="p-2 pe-5">
                           <ul class="lh-sm m-0">
-                            <li class="list-group-item fw-bold"><span>Jimmy Donaldson</span></li>
-                            <li class="list-group-item text-contacts"><span>hi@gmail.com</span></li>
+                            <li class="list-group-item fw-bold"><span id="viewEmailName">Jimmy Donaldson</span></li>
                           </ul>
                         </div>
-                        <!--Agregar amigo-->
-                        <div class="p-2">
-                          <button type="button" class="btn btn-secondary btn-sm rounded-pill fw-semibold ps-4 pe-4">Add friend
-                            <i class="fas fa-user-plus ps-1"></i>
-                            <i class="fas fa-user-times ps-1 d-none"></i>
-                          </button>
-                        </div>
-                        <!--titulo Category-->
-                        <div class="p-2">Category:</div>
-                        <!--Colocar categoria-->
-                        <div class="p-2"><form class="d-flex" role="search">
-                          <div class="input-group input-group-sm">
-                            <input class="form-control me-2 text-light" type="add" aria-label="add" style="border-radius: 15px; background: none;">
-                          </div>
-                        </form>
-                        </div>
+
                         <!--acciones-->
                         <div class="p-2 d-flex">
                           <div role="button" class="text-secondary me-3" data-bs-toggle="tooltip" data-bs-title="Edit message">
@@ -281,10 +266,10 @@
                           <!--detalle del mensaje-->
                           <div class="col-12">
                             <div class="d-flex flex-row mb-3">
-                              <div class="fw-bold pe-2">Title :</div>
-                              <div>¡Tu precio de Black Friday sigue! Tómalo ahora</div>
+                              <div class="fw-bold pe-2">Subject :</div>
+                              <div id="viewEmailSubject">¡Tu precio de Black Friday sigue! Tómalo ahora</div>
                               <div class="ms-auto">
-                                <date>03 Diciembre</date>
+                                <date id="viewEmailDate">03 Diciembre</date>
                                 <div>
                                 </div>
                               </div>
@@ -294,9 +279,9 @@
 
                           <!--Asunto-->
                           <div class="col-12">
-                            <div class="fw-bold pe-2">Subject</div>
+                            <div class="fw-bold pe-2" >Content</div>
                             <div>
-                          <span>
+                          <span id="viewEmailContent">
                             It is a long established fact that a reader will be distracted by the readable content of a
                             page when looking at its layout. The point of using Lorem Ipsum is that it has a
                             more-or-less normal distribution of letters, as opposed to using 'Content here, content
@@ -472,6 +457,17 @@
       return stringElement.slice(0,-1);
     }
 
+    function generateToelementsViewEmail(data){
+      console.log(data);
+      var stringElement = "";
+      for (const email in data){
+        console.log(data[email]);
+        stringElement += data[email]+"<br/>";
+      }
+      console.log(stringElement);
+      return stringElement.slice(0,-1);
+    }
+
     function generateOptionValue(data){
       categoryFilter.innerHTML += "<option class='text-dark' value='"+data+"'>"+data+"</option>";
     }
@@ -535,8 +531,7 @@
       loadingStart();
       axios.get(urlBase+'/404/user/'+idUser+'/email/outbox/'+idEmail)
               .then(function (response) {
-                console.log(response);
-                showViewEmail(response)
+                showViewEmail(response.data.Email)
                 loadingStop();
               }).catch(function (error) {
         showToastError(error.response.data);
@@ -547,6 +542,10 @@
     function showViewEmail(data){
       viewBoxSection.classList.add("d-none");
       viewEmailSection.classList.remove("d-none");
+      document.getElementById("viewEmailDate").innerHTML = data.date_sended;
+      document.getElementById("viewEmailName").innerHTML = generateToelementsViewEmail(data.to);
+      document.getElementById("viewEmailSubject").innerHTML = data.subject;
+      document.getElementById("viewEmailContent").innerHTML = data.raw_content;
     }
 
     function showViewBox(){
