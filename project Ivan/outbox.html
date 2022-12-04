@@ -13,6 +13,13 @@
     integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!--Animation css-->
+  <style>
+    p{
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  </style>
 
 </head>
 
@@ -50,12 +57,12 @@
           <button class="btn btn-secondary btn-lg fw-semibold btn-border-1 pt-2 pb-2" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
             Compose <i class="fas fa-mail-bulk"></i></button>
         </li>
-        <li class="active">
+        <li >
           <a href="inbox.html" class="text-decoration-none px-3 py-3 d-block">
             <i class="fas fa-inbox"></i> Inbox
           </a>          
         </li>
-        <li class="">
+        <li class="active">
           <a href="outbox.html" class="text-decoration-none px-3 py-3 d-block">
             <i class="far fa-paper-plane"></i> Sent
           </a>  
@@ -167,18 +174,10 @@
                     <!--buscar correo-->
                     <div class="p-2">
                       <div class="input-group input-group-sm">
-                      <input id="emailFilter" class="form-control me-2 text-light" type="search" placeholder="Search by email address..." aria-label="Search" style="border-radius: 15px; background: none;">
+                      <input id="emailFilter" class="form-control me-2 text-light"  placeholder="Search by email address..." aria-label="Search" style="border-radius: 15px; background: none;">
                       </div>
-                      <button class="btn btn-outline-success d-none" type="submit">Search</button>
+
                   </div>
-                    <!--Seleccionar categoria-->
-                    <div class="p-2">
-                      <div class="input-group input-group-sm">
-                      <select id="categoryFilter" class="form-select text-light" aria-label="Default select example" placeholder="Select a category" style="background: none; border-radius: 15px;">
-                        <option class="text-dark" value="" selected>--Select a category--</option>
-                      </select>
-                     </div>
-                    </div>
                     <!--acciones-->
                     <div class="p-2 d-flex">
                       <div role="button" class="text-secondary me-3" onclick="searchEmail()">
@@ -234,12 +233,11 @@
     </div>
   </div>
 
-
-
+  
+  
     
   </main>
 
-  <!-- Modal to send a mail -->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content p-3 pb-4">
@@ -312,24 +310,15 @@
       toastLiveError.show();
     }
 
-    function loadCategoryList(){
-      axios.get(urlBase+'/404/user/'+idUser+'/email/categorylist')
-              .then(function (response) {
-                for(const data in response.data.Category){
-                  generateOptionValue(response.data.Category[data]);
-                }
-              }).catch(function (error) {
-        showToastError(error.response.data);
-      });
-    }
+
 
     function loadEmail() {
       loadingStart();
       clearTable();
-      axios.get(urlBase + '/404/user/' + idUser + '/email/inbox')
+      axios.get(urlBase + '/404/user/' + idUser + '/email/outbox')
               .then(function (response) {
-                for (const data in response.data.Inbox) {
-                  insertRegister(response.data.Inbox[data]);
+                for (const data in response.data.Outbox) {
+                  insertRegister(response.data.Outbox[data]);
                   loadingStop();
                 }
               }).catch(function (error) {
@@ -340,26 +329,22 @@
 
     function searchEmail() {
       loadingStart();
-      queryParam = "";
-      if (emailFilter.value.trim()!=='') {
-        queryParam += "&email=" + emailFilter.value;
-      }
-      if (categoryFilter.value.trim()!=='') {
-        queryParam += "&category=" + categoryFilter.value;
-      }
+      var queryParam = "&field=email&value=" + emailFilter.value;
       clearTable();
-      if (!queryParam) {
+      if (emailFilter.value==='') {
         loadEmail();
       } else {
-        axios.get(urlBase + '/404/user/' + idUser + '/email/inbox/search?' + queryParam)
+        axios.get(urlBase + '/404/user/' + idUser + '/email/outbox/search?' + queryParam)
                 .then(function (response) {
-                  for (const data in response.data.Inbox) {
-                    insertRegister(response.data.Inbox[data]);
+                  console.log(response);
+                  for (const data in response.data.Outbox) {
+                    console.log(response.data.Outbox[data]);
+                    insertRegister(response.data.Outbox[data]);
                     loadingStop();
                   }
                 }).catch(function (error) {
-          showToastError(error.response.data);
-          loadingStop();
+                  showToastError(error.response.data);
+                  loadingStop();
         });
       }
 
@@ -368,9 +353,7 @@
 
     function insertRegister(data){
       const text = "  <tr role=\"button\">" +
-              "<td "+(data.friendship==true?"style=\"color:yellow\";":"")+">"+data.full_name+"</td>"+
-              "<td><span>"+data.from+"</span></td>" +
-              "<td>"+generateCategoryTags(data)+"</td>" +
+              "<td style='max-width: 120px;'><p data-bs-toggle=\"tooltip\" data-bs-placement=\"top\" title=\""+generateToelements(data.to)+"\">"+generateToelements(data.to)+"</p></td>" +
               "<td>"+data.subject+"</td>" +
               "<td><date>"+data.date_sended+"</date></td>" +
               "</tr>"
@@ -382,13 +365,15 @@
       tbody.innerHTML =  "";
     }
 
-    function generateCategoryTags(data){
-      var spanCat = "";
-      const categories = data.categories;
-      for (const cat in categories){
-        spanCat += "<span class=\"badge text-bg-success\">"+categories[cat]+"</span></td>";
+    function generateToelements(data){
+      console.log(data);
+      var stringElement = "";
+      for (const email in data){
+        console.log(data[email]);
+        stringElement += data[email]+",";
       }
-      return spanCat;
+      console.log(stringElement);
+      return stringElement.slice(0,-1);
     }
 
     function generateOptionValue(data){
@@ -399,38 +384,36 @@
       syncButton.classList.add("d-none");
       loader.classList.remove("d-none");
     }
+
     function loadingStop(){
       loader.classList.add("d-none");
       syncButton.classList.remove("d-none");
     }
 
-
-
-
-    loadCategoryList();
     loadEmail();
+
     const submitForm = document.getElementById("formSendEmail");
 
     (() => {
 
-        submitForm.addEventListener('submit', event => {
-          document.getElementById('loaderSend').classList.remove("d-none");
-          if (!submitForm.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }else{
-            submitForm.classList.add('was-validated')
-            var to = document.getElementById("emailToSend").value.split(",");
-            var subject = document.getElementById("subject").value;
-            var content = document.getElementById("content").value;
-            sendEmail(to,subject,content,submitForm);
-            event.preventDefault()
-            event.stopPropagation()
-          }
-          document.getElementById('loaderSend').classList.add("d-none");
-
+      submitForm.addEventListener('submit', event => {
+        document.getElementById('loaderSend').classList.remove("d-none");
+        if (!submitForm.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }else{
           submitForm.classList.add('was-validated')
-        }, false);
+          var to = document.getElementById("emailToSend").value.split(",");
+          var subject = document.getElementById("subject").value;
+          var content = document.getElementById("content").value;
+          sendEmail(to,subject,content,submitForm);
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        document.getElementById('loaderSend').classList.add("d-none");
+
+        submitForm.classList.add('was-validated')
+      }, false);
     })()
 
     function sendEmail(to,subject,content,submitForm){
@@ -443,14 +426,13 @@
         showToastInfo("email sended!");
         const modal1 = bootstrap.Modal.getOrCreateInstance(document.getElementById('staticBackdrop'));
         modal1.hide();
+        loadEmail();
         submitForm.reset();
         submitForm.classList.remove('was-validated');
       }).catch(function (error) {
         showToastError(error.response.data);
       });
     }
-
-
 
   </script>
   
