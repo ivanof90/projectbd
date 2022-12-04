@@ -148,7 +148,7 @@
       </nav>
 
       <!--Body inbox-->
-      <section>
+      <section id="viewBox">
         <div class="dashboard-content bg-complement text-white" style="overflow: visible; border-radius: 21px 0 0 0;">
           <!--Request-->
           <section>
@@ -231,6 +231,100 @@
           </section>
         </div>
       </section>
+
+      <!--watch a message-->
+      <section id="viewEmail" class="d-none">
+        <div class="dashboard-content bg-complement text-white" style="overflow: hidden; border-radius: 21px 0 0 0;">
+          <!--Request-->
+          <section>
+
+            <div class="container">
+              <div class="row p-5">
+                <div class="col-12">
+                  <div class="d-flex flex-row mb-3 border-bottom border-primary align-items-center pb-2">
+                    <div class="p-2">
+                      <i class="fas fa-chevron-left fs-3" role="button" onclick="showViewBox();"></i>
+                    </div>
+                    <!--titulo filtro-->
+                    <div class="p-2 pe-5">
+                      <ul class="lh-sm m-0">
+                        <li class="list-group-item fw-bold"><span>Jimmy Donaldson</span></li>
+                        <li class="list-group-item text-contacts"><span>hi@gmail.com</span></li>
+                      </ul>
+                    </div>
+                    <!--Agregar amigo-->
+                    <div class="p-2">
+                      <button type="button" class="btn btn-secondary btn-sm rounded-pill fw-semibold ps-4 pe-4">Add friend
+                        <i class="fas fa-user-plus ps-1"></i>
+                        <i class="fas fa-user-times ps-1 d-none"></i>
+                      </button>
+                    </div>
+                    <!--titulo Category-->
+                    <div class="p-2">Category:</div>
+                    <!--Colocar categoria-->
+                    <div class="p-2"><form class="d-flex" role="search">
+                      <div class="input-group input-group-sm">
+                        <input class="form-control me-2 text-light" type="add" aria-label="add" style="border-radius: 15px; background: none;">
+                      </div>
+                    </form>
+                    </div>
+                    <!--acciones-->
+                    <div class="p-2 d-flex">
+                      <div role="button" class="text-secondary me-3" data-bs-toggle="tooltip" data-bs-title="Edit message">
+                        <i class="fas fa-edit"></i>
+                      </div>
+                      <div role="button" class="text-danger me-3">
+                        <i class="fas fa-trash" data-bs-toggle="tooltip" data-bs-title="Delete message"></i>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--Ver mensaje-->
+                  <div class="container">
+                    <div class="row">
+                      <!--detalle del mensaje-->
+                      <div class="col-12">
+                        <div class="d-flex flex-row mb-3">
+                          <div class="fw-bold pe-2">Title :</div>
+                          <div>¡Tu precio de Black Friday sigue! Tómalo ahora</div>
+                          <div class="ms-auto">
+                            <date>03 Diciembre</date>
+                            <div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- fin . detalle del mensaje-->
+
+                      <!--Asunto-->
+                      <div class="col-12">
+                        <div class="fw-bold pe-2">Subject</div>
+                        <div>
+                          <span>
+                            It is a long established fact that a reader will be distracted by the readable content of a
+                            page when looking at its layout. The point of using Lorem Ipsum is that it has a
+                            more-or-less normal distribution of letters, as opposed to using 'Content here, content
+                            here', making it look like readable English. Many desktop publishing packages and web page
+                            editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will
+                            uncover many web sites still in their infancy. Various versions have evolved over the years,
+                            sometimes by accident, sometimes on purpose (injected humour and the like).
+                          </span>
+                        </div>
+                      </div>
+                      <!--Fin del asunto-->
+                    </div>
+                  </div>
+                  <!--Fin del mensaje-->
+                </div>
+              </div>
+            </div>
+
+
+          </section>
+        </div>
+      </section>
+
+
     </div>
   </div>
 
@@ -297,11 +391,16 @@
     const loader = document.getElementById('loader');
     const syncButton = document.getElementById('syncButton');
 
+    const viewEmailSection = document.getElementById('viewEmail');
+    const viewBoxSection = document.getElementById('viewBox');
+
+
     const urlBase = "http://127.0.0.1:5000";
     const toastLiveInfo = new bootstrap.Toast(document.getElementById('toast-info'));
     const toastLiveError = new bootstrap.Toast(document.getElementById('toast-error'));
     const toastLiveInfoMessage = document.getElementById("toast-body-info");
     const toastLiveErrorMessage = document.getElementById("toast-body-error");
+
 
     function showToastInfo(msg){
       toastLiveInfoMessage.innerHTML = msg;
@@ -367,7 +466,7 @@
     }
 
     function insertRegister(data){
-      const text = "  <tr role=\"button\">" +
+      const text = "  <tr onclick='viewEmail("+data.id_email+")' role=\"button\">" +
               "<td "+(data.friendship==true?"style=\"color:yellow\";":"")+">"+data.full_name+"</td>"+
               "<td><span>"+data.from+"</span></td>" +
               "<td>"+generateCategoryTags(data)+"</td>" +
@@ -449,6 +548,30 @@
         showToastError(error.response.data);
       });
     }
+
+    function viewEmail(idEmail){
+      loadingStart();
+      axios.get(urlBase+'/404/user/'+idUser+'/email/inbox/'+idEmail)
+              .then(function (response) {
+                console.log(response);
+                showViewEmail(response)
+                loadingStop();
+              }).catch(function (error) {
+        showToastError(error.response.data);
+        loadingStop();
+      });
+    }
+
+    function showViewEmail(data){
+      viewBoxSection.classList.add("d-none");
+      viewEmailSection.classList.remove("d-none");
+    }
+
+    function showViewBox(){
+      viewBoxSection.classList.remove("d-none");
+      viewEmailSection.classList.add("d-none");
+    }
+
 
 
 
