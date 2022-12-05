@@ -54,7 +54,7 @@
       <!--Opciones del menu-->
       <ul class="list-undstyled px-2 lh-1 nav-actions">
         <li class="text-center pb-2">
-          <button class="btn btn-secondary btn-lg fw-semibold btn-border-1 pt-2 pb-2" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+          <button class="btn btn-secondary btn-lg fw-semibold btn-border-1 pt-2 pb-2" type="button" onclick="functionInitSendMessage();" >
             Compose <i class="fas fa-mail-bulk"></i></button>
         </li>
         <li >
@@ -67,61 +67,12 @@
             <i class="far fa-paper-plane"></i> Sent
           </a>  
         </li>
-        <li class="">
-          <a href="#" class="text-decoration-none px-3 py-3 d-block">
-            <i class="fas fa-exclamation-circle"></i> Important
-          </a>  
-        </li>
-        <li class="d-block">
-          <a href="#" class="text-decoration-none px-3 py-3 d-block">
-            <i class="fas fa-file"></i> Draft
-          </a>  
-        </li>
-        <li class="">
-          <a href="#" class="text-decoration-none px-3 py-3 d-block">
-            <i class="fas fa-trash"></i> Trash
-          </a>
-        </li>
       </ul>
       <!--Opciones del menu - fin-->
 
       <hr class="mx-4 text-light">
 
-      <!--Amigos recientes - Inicio-->
-        <ul class="list-undstyled px-2 lh-1 pb-1">
-          <li class="pb-2 px-3 py-3">
-            <h6 class="text-light">Recent Friends</h6>
-          </li>
 
-          <li class="pb-3">
-            <a href="#" class="text-decoration-none px-3 py-3">
-            <img src="img/user1.png" alt="" class="img-fluid pe-1" style="height: 30px;">
-            <span class="text-contacts">Jimmy Donaldson</span>
-            </a>
-          </li>
-
-          <li class="pb-3">
-            <a href="#" class="text-decoration-none px-3 py-3">
-            <img src="img/user2.png" alt="" class="img-fluid pe-1" style="height: 30px;">
-            <span class="text-contacts">Félix Lengyel</span>
-            </a>
-          </li>
-
-          <li class="pb-3">
-            <a href="#" class="text-decoration-none px-3 py-3">
-            <img src="img/user3.png" alt="" class="img-fluid pe-1" style="height: 30px;">
-            <span class="text-contacts">Richard Tyler</span>
-            </a>
-          </li>
-
-          <li class="pb-3">
-            <a href="#" class="text-decoration-none px-3 py-3">
-            <img src="img/user4.png" alt="" class="img-fluid pe-1" style="height: 30px;">
-            <span class="text-contacts">Hasbulla Magomedov</span>
-            </a>
-          </li>
-        </ul>
-      <!--Amigos recientes - fin-->
     </div>
     
     
@@ -143,9 +94,9 @@
           
           <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0">
-              <li></li>
               <li class="nav-item">
                 <a class="nav-link text-secondary active" aria-current="page" href="index.html">
+                  <span id="userName"></span>
                   <i class="fas fa-power-off"></i>
                 </a>
               </li>
@@ -188,37 +139,7 @@
                   </div>                   
                     <table class="table text-light">
                       <tbody id="tbody">
-                        <!--Inicio de registro 1-->
-                        <tr role="button">
 
-                          <!--User-->   
-                          <td>Jimmy Donaldson</td>
-                          <!--mail-->
-                          <td><span>Jdonaldson@gmail.com</span></td>
-                          <!--category-->
-                          <td><span class="badge text-bg-danger">Urgent</span></td>
-                          <!--subject-->
-                          <td>1 new job for "User Interface Designer"</td>
-                          <!--subject-->
-                          <td><date>Dec 2022</date></td>
-                        </tr>
-                        <!--fin de registro 1-->
-
-                        <!--Inicio de registro 2-->
-                        <tr role="button">
-
-                          <!--User-->   
-                          <td>Félix Lengyel</td>
-                          <!--mail-->
-                          <td><span>flengyel@gmail.com</span></td>
-                          <!--category-->
-                          <td><span class="badge text-bg-success">Game</span></td>
-                          <!--subject-->
-                          <td>friend request about league of legends>></td>
-                          <!--subject-->
-                          <td><date>Dec 2022</date></td>
-                        </tr>
-                        <!--fin de registro 2-->
 
                       </tbody>
                     </table>
@@ -251,11 +172,12 @@
 
                         <!--acciones-->
                         <div class="p-2 d-flex">
-                          <div role="button" class="text-secondary me-3" data-bs-toggle="tooltip" data-bs-title="Edit message">
+                          <div id="btnEdit" role="button" class="text-secondary me-3" data-bs-toggle="tooltip" data-bs-title="Edit message" onclick="functionInitEdit();">
                             <i class="fas fa-edit"></i>
                           </div>
                           <div role="button" class="text-danger me-3">
-                            <i class="fas fa-trash" data-bs-toggle="tooltip" data-bs-title="Delete message"></i>
+                            <i class="fas fa-trash" data-bs-toggle="tooltip" onclick="deleteEmail();" data-bs-title="Delete message" id="deleteButton"></i>
+                            <span class="spinner-border spinner-border-sm ms-1 d-none" role="status" aria-hidden="true" id="loaderDelete"></span>
                           </div>
                         </div>
                       </div>
@@ -267,9 +189,9 @@
                           <div class="col-12">
                             <div class="d-flex flex-row mb-3">
                               <div class="fw-bold pe-2">Subject :</div>
-                              <div id="viewEmailSubject">¡Tu precio de Black Friday sigue! Tómalo ahora</div>
+                              <div id="viewEmailSubject"></div>
                               <div class="ms-auto">
-                                <date id="viewEmailDate">03 Diciembre</date>
+                                <date id="viewEmailDate"></date>
                                 <div>
                                 </div>
                               </div>
@@ -282,13 +204,7 @@
                             <div class="fw-bold pe-2" >Content</div>
                             <div>
                           <span id="viewEmailContent">
-                            It is a long established fact that a reader will be distracted by the readable content of a
-                            page when looking at its layout. The point of using Lorem Ipsum is that it has a
-                            more-or-less normal distribution of letters, as opposed to using 'Content here, content
-                            here', making it look like readable English. Many desktop publishing packages and web page
-                            editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will
-                            uncover many web sites still in their infancy. Various versions have evolved over the years,
-                            sometimes by accident, sometimes on purpose (injected humour and the like).
+
                           </span>
                             </div>
                           </div>
@@ -323,20 +239,20 @@
           <!--Cabecera del formulario-->
           <div class="modal-header border-0">
             <i class="far fa-envelope pe-3 fs-3"></i>
-            <h3 class="m-0 fw-bold">New Message</h3>
+            <h3 id="modalTitle" class="m-0 fw-bold">New Message</h3>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <!--Cuerpo del formulario-->
           <div class="modal-body">
             <!--set a email-->
-            <div class="mb-3">
+            <div class="mb-3" id="divTo">
               <input class="form-control" id="emailToSend" placeholder="to:" required>
               <div class="invalid-feedback">
                 Please add a recipient.
               </div>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3" id="divSubject">
               <input type="subject" class="form-control" id="subject" placeholder="subject:" required>
               <div class="invalid-feedback">
                 Please add a subject.
@@ -350,7 +266,7 @@
               </div>
             </div>
             <button type="submit" class="btn btn-secondary btn-md ps-5 pe-5 rounded-pill fw-bold float-end">
-              Send
+              <span id="lblSubmit">Send</span>
               <span class="spinner-border spinner-border-sm ms-1 d-none" role="status" aria-hidden="true" id="loaderSend"></span>
             </button>
           </div>
@@ -417,9 +333,7 @@
       } else {
         axios.get(urlBase + '/404/user/' + idUser + '/email/outbox/search?' + queryParam)
                 .then(function (response) {
-                  console.log(response);
                   for (const data in response.data.Outbox) {
-                    console.log(response.data.Outbox[data]);
                     insertRegister(response.data.Outbox[data]);
                     loadingStop();
                   }
@@ -447,24 +361,18 @@
     }
 
     function generateToelements(data){
-      console.log(data);
       var stringElement = "";
       for (const email in data){
-        console.log(data[email]);
         stringElement += data[email]+",";
       }
-      console.log(stringElement);
       return stringElement.slice(0,-1);
     }
 
     function generateToelementsViewEmail(data){
-      console.log(data);
       var stringElement = "";
       for (const email in data){
-        console.log(data[email]);
         stringElement += data[email]+"<br/>";
       }
-      console.log(stringElement);
       return stringElement.slice(0,-1);
     }
 
@@ -498,11 +406,15 @@
           var to = document.getElementById("emailToSend").value.split(",");
           var subject = document.getElementById("subject").value;
           var content = document.getElementById("content").value;
-          sendEmail(to,subject,content,submitForm);
+          if(modalSubmitMode==0){
+            sendEmail(to,subject,content,submitForm);
+          }else{
+            updateEmail(subject,content,submitForm);
+          }
+
           event.preventDefault()
           event.stopPropagation()
         }
-        document.getElementById('loaderSend').classList.add("d-none");
 
         submitForm.classList.add('was-validated')
       }, false);
@@ -521,13 +433,36 @@
         loadEmail();
         submitForm.reset();
         submitForm.classList.remove('was-validated');
+        document.getElementById('loaderSend').classList.add("d-none");
       }).catch(function (error) {
         showToastError(error.response.data);
+        document.getElementById('loaderSend').classList.add("d-none");
       });
     }
 
+    function updateEmail(subject,content,submitForm){
+      axios.post(urlBase+'/404/user/'+idUser+'/email/outbox/update', {
+        id_email:currentIdEmail,
+        subject:subject,
+        raw_content:content
+      }).then(function (response) {
+        showToastInfo("email updated!");
+        const modal1 = bootstrap.Modal.getOrCreateInstance(document.getElementById('staticBackdrop'));
+        modal1.hide();
+        submitForm.classList.remove('was-validated');
+        document.getElementById('loaderSend').classList.add("d-none");
+        currentSubject.innerHTML = modalSubject.value;
+        currentContent.innerHTML = modalContent.value;
+        submitForm.reset();
+      }).catch(function (error) {
+        showToastError(error.response.data);
+        document.getElementById('loaderSend').classList.add("d-none");
+      });
+    }
 
+    var currentIdEmail;
     function viewEmail(idEmail){
+      currentIdEmail = idEmail;
       loadingStart();
       axios.get(urlBase+'/404/user/'+idUser+'/email/outbox/'+idEmail)
               .then(function (response) {
@@ -552,6 +487,87 @@
       viewBoxSection.classList.remove("d-none");
       viewEmailSection.classList.add("d-none");
     }
+
+    function deleteEmail(){
+      showLoadingDelete();
+      axios.post(urlBase+'/404/user/'+idUser+'/email/outbox/delete', {
+        id_email:currentIdEmail
+      }).then(function (response) {
+        showToastInfo("email deteled!");
+        showViewBox();
+        loadEmail();
+        hideLoadingDelete();
+      }).catch(function (error) {
+        showToastError(error.response.data);
+        hideLoadingDelete();
+      });
+    }
+
+    const deleteButton = document.getElementById("deleteButton");
+    const loaderDelete = document.getElementById("loaderDelete");
+
+    function showLoadingDelete(){
+      deleteButton.classList.add("d-none");
+      loaderDelete.classList.remove("d-none");
+    }
+    function hideLoadingDelete(){
+      deleteButton.classList.remove("d-none");
+      loaderDelete.classList.add("d-none");
+    }
+
+    const isPremium = sessionStorage.getItem("isPremium");
+    const btnEdit = document.getElementById("btnEdit");
+    if(isPremium=="true"){
+      btnEdit.classList.remove("d-none");
+    }else{
+      btnEdit.classList.add("d-none");
+    }
+    const modal1 = bootstrap.Modal.getOrCreateInstance(document.getElementById('staticBackdrop'));
+    const modalTitle = document.getElementById("modalTitle");
+    const divTo = document.getElementById("divTo");
+    const divSubject = document.getElementById("divSubject");
+    const lblSubmit = document.getElementById("lblSubmit");
+    const emailToSend = document.getElementById("emailToSend");
+    const modalSubject = document.getElementById("subject");
+    const modalContent = document.getElementById("content");
+    const currentSubject = document.getElementById("viewEmailSubject");
+    const currentContent = document.getElementById("viewEmailContent");
+    let modalSubmitMode = 0;
+
+
+
+    function functionInitSendMessage(){
+      modalTitle.innerHTML = "New Message";
+      modal1.show();
+      divTo.classList.remove("d-none");
+      lblSubmit.innerHTML = "Send";
+      emailToSend.classList.add("form-control");
+      emailToSend.required=true;
+      modalSubject.value = '';
+      modalContent.value = '';
+      modalSubmitMode = 0;
+    }
+
+    function functionInitEdit(){
+      modalTitle.innerHTML = "Edit Message";
+      modal1.show();
+      divTo.classList.add("d-none");
+      emailToSend.classList.remove("form-control");
+      emailToSend.required=false;
+      lblSubmit.innerHTML = "Update";
+      modalSubject.value = currentSubject.innerHTML;
+      modalContent.value = currentContent.innerHTML;
+      modalSubmitMode = 1;
+    }
+    document.getElementById("userName").innerHTML = sessionStorage.getItem("fullName");
+
+    function logout(){
+      sessionStorage.setItem("idUser",null);
+      sessionStorage.setItem("fullName",null);
+      sessionStorage.setItem("isPremium",null);
+      window.location.href = "index.html"
+    }
+
 
 
   </script>

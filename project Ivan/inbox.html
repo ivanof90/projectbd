@@ -47,7 +47,7 @@
       <!--Opciones del menu-->
       <ul class="list-undstyled px-2 lh-1 nav-actions">
         <li class="text-center pb-2">
-          <button class="btn btn-secondary btn-lg fw-semibold btn-border-1 pt-2 pb-2" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+          <button class="btn btn-secondary btn-lg fw-semibold btn-border-1 pt-2 pb-2" type="button" onclick="functionInitSendMessage();" >
             Compose <i class="fas fa-mail-bulk"></i></button>
         </li>
         <li class="active">
@@ -60,61 +60,13 @@
             <i class="far fa-paper-plane"></i> Sent
           </a>  
         </li>
-        <li class="">
-          <a href="#" class="text-decoration-none px-3 py-3 d-block">
-            <i class="fas fa-exclamation-circle"></i> Important
-          </a>  
-        </li>
-        <li class="d-block">
-          <a href="#" class="text-decoration-none px-3 py-3 d-block">
-            <i class="fas fa-file"></i> Draft
-          </a>  
-        </li>
-        <li class="">
-          <a href="#" class="text-decoration-none px-3 py-3 d-block">
-            <i class="fas fa-trash"></i> Trash
-          </a>
-        </li>
+
       </ul>
       <!--Opciones del menu - fin-->
 
       <hr class="mx-4 text-light">
 
-      <!--Amigos recientes - Inicio-->
-        <ul class="list-undstyled px-2 lh-1 pb-1">
-          <li class="pb-2 px-3 py-3">
-            <h6 class="text-light">Recent Friends</h6>
-          </li>
 
-          <li class="pb-3">
-            <a href="#" class="text-decoration-none px-3 py-3">
-            <img src="img/user1.png" alt="" class="img-fluid pe-1" style="height: 30px;">
-            <span class="text-contacts">Jimmy Donaldson</span>
-            </a>
-          </li>
-
-          <li class="pb-3">
-            <a href="#" class="text-decoration-none px-3 py-3">
-            <img src="img/user2.png" alt="" class="img-fluid pe-1" style="height: 30px;">
-            <span class="text-contacts">Félix Lengyel</span>
-            </a>
-          </li>
-
-          <li class="pb-3">
-            <a href="#" class="text-decoration-none px-3 py-3">
-            <img src="img/user3.png" alt="" class="img-fluid pe-1" style="height: 30px;">
-            <span class="text-contacts">Richard Tyler</span>
-            </a>
-          </li>
-
-          <li class="pb-3">
-            <a href="#" class="text-decoration-none px-3 py-3">
-            <img src="img/user4.png" alt="" class="img-fluid pe-1" style="height: 30px;">
-            <span class="text-contacts">Hasbulla Magomedov</span>
-            </a>
-          </li>
-        </ul>
-      <!--Amigos recientes - fin-->
     </div>
     
     
@@ -139,7 +91,8 @@
               <li></li>
               <li class="nav-item">
                 <a class="nav-link text-secondary active" aria-current="page" href="index.html">
-                  <i class="fas fa-power-off"></i>
+                  <span id="userName"></span>
+                  <i class="fas fa-power-off" onclick="logout();"></i>
                 </a>
               </li>
             </ul>
@@ -254,28 +207,40 @@
                     </div>
                     <!--Agregar amigo-->
                     <div class="p-2">
-                      <button type="button" class="btn btn-secondary btn-sm rounded-pill fw-semibold ps-4 pe-4">Add friend
-                        <i class="fas fa-user-plus ps-1"></i>
-                        <i class="fas fa-user-times ps-1 d-none"></i>
+                      <button type="button" id="btnAddFriend" onclick="updateFriendStatus();"
+                              class="btn btn-secondary btn-sm rounded-pill fw-semibold ps-4 pe-4">
+                        <span id="lblAddFriend">Add friend</span>
+                        <i id="iconAddFriend" class="fas fa-user-plus ps-1"></i>
+                        <i id="iconRemoveFriend" class="fas fa-user-times ps-1"></i>
+                        <span class="spinner-border spinner-border-sm ms-1 d-none" role="status" aria-hidden="true" id="loaderFriend"></span>
                       </button>
                     </div>
                     <!--titulo Category-->
                     <div class="p-2">Category:</div>
                     <!--Colocar categoria-->
-                    <div class="p-2"><form class="d-flex" role="search">
-                      <div class="input-group input-group-sm">
-                        <input class="form-control me-2 text-light" type="add" aria-label="add" style="border-radius: 15px; background: none;">
-                      </div>
-                    </form>
+                    <div class="p-2">
+                      <form id="formCategory" class="need-validation" novalidate>
+                        <div class="input-group input-group-sm" style="width:150px; ">
+                          <input class="form-control me-2 text-light" type="add" id="categoryName" aria-label="add"
+                                 style="border-radius: 15px; background: none;" required>
+                        </div>
+                      </form>
+
                     </div>
                     <!--acciones-->
                     <div class="p-2 d-flex">
-                      <div role="button" class="text-secondary me-3" data-bs-toggle="tooltip" data-bs-title="Edit message">
-                        <i class="fas fa-edit"></i>
+                      <div role="button" class="text-secondary me-3">
+                        <i class="fas fa-plus" data-bs-toggle="tooltip" onclick="addCategory();" data-bs-title="Add category" id="categoryButton"></i>
+                        <span class="spinner-border spinner-border-sm ms-1 d-none" role="status" aria-hidden="true" id="loaderCategory"></span>
+                      </div>
+                      <div role="button" class="text-secondary me-3">
+                        <i class="fas fa-reply" data-bs-toggle="tooltip" onclick="functionInitReply();" data-bs-title="Reply message"></i>
                       </div>
                       <div role="button" class="text-danger me-3">
-                        <i class="fas fa-trash" data-bs-toggle="tooltip" data-bs-title="Delete message"></i>
+                        <i class="fas fa-trash" data-bs-toggle="tooltip" onclick="deleteEmail();" data-bs-title="Delete message" id="deleteButton"></i>
+                        <span class="spinner-border spinner-border-sm ms-1 d-none" role="status" aria-hidden="true" id="loaderDelete"></span>
                       </div>
+
                     </div>
                   </div>
 
@@ -286,9 +251,9 @@
                       <div class="col-12">
                         <div class="d-flex flex-row mb-3">
                           <div class="fw-bold pe-2">Subject :</div>
-                          <div id="viewEmailSubject">¡Tu precio de Black Friday sigue! Tómalo ahora</div>
+                          <div id="viewEmailSubject"></div>
                           <div class="ms-auto">
-                            <date id="viewEmailDate">03 Diciembre</date>
+                            <date id="viewEmailDate"></date>
                             <div>
                             </div>
                           </div>
@@ -301,13 +266,6 @@
                         <div class="fw-bold pe-2" >Content</div>
                         <div>
                           <span id="viewEmailContent">
-                            It is a long established fact that a reader will be distracted by the readable content of a
-                            page when looking at its layout. The point of using Lorem Ipsum is that it has a
-                            more-or-less normal distribution of letters, as opposed to using 'Content here, content
-                            here', making it look like readable English. Many desktop publishing packages and web page
-                            editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will
-                            uncover many web sites still in their infancy. Various versions have evolved over the years,
-                            sometimes by accident, sometimes on purpose (injected humour and the like).
                           </span>
                         </div>
                       </div>
@@ -341,20 +299,20 @@
           <!--Cabecera del formulario-->
           <div class="modal-header border-0">
             <i class="far fa-envelope pe-3 fs-3"></i>
-            <h3 class="m-0 fw-bold">New Message</h3>
+            <h3 id="modalTitle" class="m-0 fw-bold">New Message</h3>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <!--Cuerpo del formulario-->
           <div class="modal-body">
             <!--set a email-->
-            <div class="mb-3">
+            <div class="mb-3" id="divTo">
               <input class="form-control" id="emailToSend" placeholder="to:" required>
               <div class="invalid-feedback">
                 Please add a recipient.
               </div>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3" id="divSubject">
               <input type="subject" class="form-control" id="subject" placeholder="subject:" required>
               <div class="invalid-feedback">
                 Please add a subject.
@@ -368,7 +326,7 @@
               </div>
             </div>
             <button type="submit" class="btn btn-secondary btn-md ps-5 pe-5 rounded-pill fw-bold float-end">
-              Send
+              <span id="lblSubmit">Send</span>
               <span class="spinner-border spinner-border-sm ms-1 d-none" role="status" aria-hidden="true" id="loaderSend"></span>
             </button>
           </div>
@@ -466,7 +424,7 @@
     }
 
     function insertRegister(data){
-      const text = "  <tr onclick='viewEmail("+data.id_email+")' role=\"button\">" +
+      const text = "  <tr onclick='viewEmail("+data.id_email+","+data.friendship+")' role=\"button\">" +
               "<td "+(data.friendship==true?"style=\"color:yellow\";":"")+">"+data.full_name+"</td>"+
               "<td><span>"+data.from+"</span></td>" +
               "<td>"+generateCategoryTags(data)+"</td>" +
@@ -485,7 +443,7 @@
       var spanCat = "";
       const categories = data.categories;
       for (const cat in categories){
-        spanCat += "<span class=\"badge text-bg-success\">"+categories[cat]+"</span></td>";
+        spanCat += "<span style='    margin-right: 2px' class=\"badge text-bg-success\">"+categories[cat]+"</span>";
       }
       return spanCat;
     }
@@ -509,6 +467,13 @@
     loadCategoryList();
     loadEmail();
     const submitForm = document.getElementById("formSendEmail");
+    const formCategory = document.getElementById("formCategory");
+    formCategory.addEventListener('submit', event => {
+      console.log("hi!");
+      event.preventDefault();
+      event.stopPropagation();
+    });
+
 
     (() => {
 
@@ -522,14 +487,21 @@
             var to = document.getElementById("emailToSend").value.split(",");
             var subject = document.getElementById("subject").value;
             var content = document.getElementById("content").value;
-            sendEmail(to,subject,content,submitForm);
+            if(modalSubmitMode==0) {
+              sendEmail(to, subject, content, submitForm);
+            }else{
+              replyEmail(content,submitForm);
+            }
             event.preventDefault()
             event.stopPropagation()
           }
-          document.getElementById('loaderSend').classList.add("d-none");
+
 
           submitForm.classList.add('was-validated')
         }, false);
+
+
+
     })()
 
     function sendEmail(to,subject,content,submitForm){
@@ -544,12 +516,34 @@
         modal1.hide();
         submitForm.reset();
         submitForm.classList.remove('was-validated');
+        document.getElementById('loaderSend').classList.add("d-none");
       }).catch(function (error) {
         showToastError(error.response.data);
+        document.getElementById('loaderSend').classList.add("d-none");
       });
     }
 
-    function viewEmail(idEmail){
+    function replyEmail(content,submitForm){
+      axios.post(urlBase+'/404/user/'+idUser+'/email/inbox/'+currentIdEmail+'/reply', {
+        raw_content:content
+      }).then(function (response) {
+        showToastInfo("email replied!");
+        const modal1 = bootstrap.Modal.getOrCreateInstance(document.getElementById('staticBackdrop'));
+        modal1.hide();
+        submitForm.reset();
+        submitForm.classList.remove('was-validated');
+        document.getElementById('loaderSend').classList.add("d-none");
+      }).catch(function (error) {
+        showToastError(error.response.data);
+        document.getElementById('loaderSend').classList.add("d-none");
+      });
+    }
+
+    var currentIdEmail;
+    var isFriend;
+    function viewEmail(idEmail,friendship){
+      currentIdEmail = idEmail;
+      isFriend = friendship;
       loadingStart();
       axios.get(urlBase+'/404/user/'+idUser+'/email/inbox/'+idEmail)
               .then(function (response) {
@@ -569,12 +563,195 @@
       document.getElementById("viewEmailName").innerHTML = data.name;
       document.getElementById("viewEmailSubject").innerHTML = data.subject;
       document.getElementById("viewEmailContent").innerHTML = data.raw_content;
+      initFriendButton();
     }
 
     function showViewBox(){
       viewBoxSection.classList.remove("d-none");
+      loadEmail();
       viewEmailSection.classList.add("d-none");
     }
+
+    function deleteEmail(){
+      showLoadingDelete();
+      axios.post(urlBase+'/404/user/'+idUser+'/email/inbox/delete', {
+        id_email:currentIdEmail
+      }).then(function (response) {
+        showToastInfo("email deteled!");
+        showViewBox();
+        loadEmail();
+        hideLoadingDelete();
+      }).catch(function (error) {
+        showToastError(error.response.data);
+        hideLoadingDelete();
+      });
+    }
+
+    const deleteButton = document.getElementById("deleteButton");
+    const loaderDelete = document.getElementById("loaderDelete");
+
+    function showLoadingDelete(){
+      deleteButton.classList.add("d-none");
+      loaderDelete.classList.remove("d-none");
+    }
+    function hideLoadingDelete(){
+      deleteButton.classList.remove("d-none");
+      loaderDelete.classList.add("d-none");
+    }
+
+
+    const btnAddFriend = document.getElementById("btnAddFriend");
+    const lblAddFriend = document.getElementById("lblAddFriend");
+    const iconAddFriend = document.getElementById("iconAddFriend");
+    const iconRemoveFriend = document.getElementById("iconRemoveFriend");
+    const loaderFriend = document.getElementById("loaderFriend");
+
+    function initFriendButton(){
+      if(isFriend){
+        btnAddFriend.classList.remove('btn-secondary')
+        btnAddFriend.classList.add('btn-danger')
+        lblAddFriend.innerHTML = "Remove friend"
+        iconAddFriend.classList.add('d-none')
+        iconRemoveFriend.classList.remove('d-none')
+      }else{
+        btnAddFriend.classList.add('btn-secondary')
+        btnAddFriend.classList.remove('btn-danger')
+        lblAddFriend.innerHTML = "Add friend"
+        iconAddFriend.classList.remove('d-none')
+        iconRemoveFriend.classList.add('d-none')
+      }
+    }
+
+    function showLoadingAddFriend(){
+      //btnAddFriend.classList.add("d-none");
+      loaderFriend.classList.remove("d-none");
+    }
+    function hideLoadingAddFriend(){
+      //btnAddFriend.classList.remove("d-none");
+      loaderFriend.classList.add("d-none");
+    }
+
+    function updateFriendStatus(){
+      if(isFriend){
+        removeFriend();
+      }else{
+        addFriend();
+      }
+    }
+
+    function addFriend(){
+      showLoadingAddFriend();
+      axios.post(urlBase+'/404/user/'+idUser+'/friend/add', {
+        email:document.getElementById("viewEmailAddress").innerHTML
+      }).then(function (response) {
+        showToastInfo("friend added!");
+        isFriend = true;
+        initFriendButton();
+        hideLoadingAddFriend();
+      }).catch(function (error) {
+        showToastError(error.response.data);
+        hideLoadingAddFriend();
+      });
+    }
+
+    function removeFriend(){
+      showLoadingAddFriend();
+      axios.post(urlBase+'/404/user/'+idUser+'/friend/remove', {
+        email:document.getElementById("viewEmailAddress").innerHTML
+      }).then(function (response) {
+        showToastInfo("friend removed!");
+        isFriend = false;
+        initFriendButton();
+        hideLoadingAddFriend();
+      }).catch(function (error) {
+        showToastError(error.response.data);
+        hideLoadingAddFriend();
+      });
+    }
+
+    const categoryName = document.getElementById("categoryName");
+
+    function addCategory(){
+      document.getElementById('loaderCategory').classList.remove("d-none");
+      document.getElementById('categoryButton').classList.add("d-none");
+      if(categoryName.value==''){
+        categoryName.classList.add("is-invalid");
+        document.getElementById('loaderCategory').classList.add("d-none");
+        document.getElementById('categoryButton').classList.remove("d-none");
+        return;
+      }else{
+        categoryName.classList.remove("is-invalid");
+
+      }
+      axios.post(urlBase+'/404/user/'+idUser+'/email/'+currentIdEmail+'/setcategory', {
+        category:categoryName.value
+      }).then(function (response) {
+        showToastInfo("category added");
+        formCategory.reset();
+        document.getElementById('loaderCategory').classList.add("d-none");
+        document.getElementById('categoryButton').classList.remove("d-none");
+
+      }).catch(function (error) {
+        console.log(error);
+        showToastError(error.response.data);
+        document.getElementById('loaderCategory').classList.add("d-none");
+        document.getElementById('categoryButton').classList.remove("d-none");
+
+      });
+    }
+
+
+    const modal1 = bootstrap.Modal.getOrCreateInstance(document.getElementById('staticBackdrop'));
+    const modalTitle = document.getElementById("modalTitle");
+    const divTo = document.getElementById("divTo");
+    const divSubject = document.getElementById("divSubject");
+    const lblSubmit = document.getElementById("lblSubmit");
+    const emailToSend = document.getElementById("emailToSend");
+    const modalSubject = document.getElementById("subject");
+    const modalContent = document.getElementById("content");
+    const currentSubject = document.getElementById("viewEmailSubject");
+    const currentContent = document.getElementById("viewEmailContent");
+    let modalSubmitMode = 0;
+
+    function functionInitSendMessage(){
+      modalTitle.innerHTML = "New Message";
+      modal1.show();
+      divTo.classList.remove("d-none");
+      divSubject.classList.remove("d-none");
+      lblSubmit.innerHTML = "Send";
+      emailToSend.classList.add("form-control");
+      modalSubject.classList.add("form-control");
+      emailToSend.required=true;
+      modalSubject.required=true;
+      modalSubject.value = '';
+      modalContent.value = '';
+      modalSubmitMode = 0;
+    }
+
+    function functionInitReply(){
+      modalTitle.innerHTML = "Reply Message";
+      modal1.show();
+      divTo.classList.add("d-none");
+      divSubject.classList.add("d-none");
+      emailToSend.classList.remove("form-control");
+      modalSubject.classList.remove("form-control");
+      emailToSend.required=false;
+      modalSubject.required=false;
+      lblSubmit.innerHTML = "Reply";
+      modalContent.value = '';
+      modalSubmitMode = 1;
+    }
+
+    document.getElementById("userName").innerHTML = sessionStorage.getItem("fullName");
+
+    function logout(){
+      sessionStorage.setItem("idUser",null);
+      sessionStorage.setItem("fullName",null);
+      sessionStorage.setItem("isPremium",null);
+      window.location.href = "index.html"
+    }
+
+
 
 
 
